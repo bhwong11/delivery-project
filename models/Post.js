@@ -17,6 +17,20 @@ const PostSchema = new mongoose.Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:'User',
     },
+    postImage: {
+        type: Buffer,
+        required: true
+    }, 
+    postImageType: {
+        type: String, 
+        required: true
+    },
+})
+
+PostSchema.virtual(`postImagePath`).get(function(){
+    if(this.postImage != null  && this.postImageType != null){
+        return `data: ${this.postImageType};charset=utf-8;base64,${this.postImage.toString(`base64`)}`
+    }
 })
 
 const Post = mongoose.model('Post',PostSchema)
