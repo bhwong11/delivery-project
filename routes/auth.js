@@ -48,7 +48,7 @@ router.post('/signup3',async(req,res,next)=>{
         const foundUser = await User.exists({$or:[{email:req.session.userInfo.email},{username:req.body.username}]})
         if(foundUser){
             console.log('User already exist');
-            return res.render("auth/register", {err: "User already exists"});
+            return res.render("/", {err: "User already exists"});
         }
 
         //if user does not exist
