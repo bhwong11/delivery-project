@@ -8,7 +8,14 @@ const expressLayouts = require(`express-ejs-layouts`);
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
+<<<<<<< HEAD
 const indexRouter = require(`./routes/index`);
+=======
+const indexRouter = require(`./routes/index`)
+const profileRouter = require(`./routes/profile`)
+const postsRouter = require(`./routes/posts`)
+const boardsRouter = require(`./routes/boards`)
+>>>>>>> d6f5d99e0421bab14c13c4cf30f43a157222eca6
 
 app.set(`view engine`, `ejs`);
 app.set(`views`, __dirname + `/views`);
@@ -42,6 +49,13 @@ const db = mongoose.connection;
 db.on(`error`, (error) => console.error(error));
 db.once(`open`, () => console.log(`Connection Established`));
 
+<<<<<<< HEAD
 app.use(`/`, indexRouter);
+=======
+app.use(`/`, indexRouter)
+app.use(`/profile`, profileRouter)
+app.use(`/posts`, postsRouter)
+app.use(`/boards`, boardsRouter)
+>>>>>>> d6f5d99e0421bab14c13c4cf30f43a157222eca6
 
 app.listen(process.env.PORT || 3000);
