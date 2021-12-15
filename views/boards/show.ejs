@@ -15,6 +15,7 @@ and show post index
     <% posts.forEach(post => { %>
         <div><%= post.title %></div>
         <div><%= post.content %></div>
+        <%console.log('POST MESSAGE BOARD',post.messageBoard)%>
         <form method="POST" action="<%= `/posts/${post.id}` %>?_method=DELETE">
             <button type="submit">Delete</button>
         </form>

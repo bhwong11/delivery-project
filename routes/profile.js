@@ -23,6 +23,7 @@ router.get(`/:id`, async (req,res) => {
 })
 
 router.get(`/:id/edit`,async(req,res)=>{
+    const user = await User.findById(req.params.id)
     try{
         const user = await User.findById(req.params.id);
         return res.render(`profile/edit`,{user});

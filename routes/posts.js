@@ -24,16 +24,18 @@ router.post(`/`, async (req,res) => {
         title: req.body.title,
         content: req.body.content, 
         date_created: new Date(req.body.date_created),
-        user: req.session.currentUser,
-        messageBoard: req.body.board
+        user: req.session.currentUser._id,
+        messageBoard: req.body.messageBoard
     })
     try {
         const newPost = await post.save()
-        res.redirect(`boards/1`)
+        return res.redirect(`/boards/${req.body.messageBoard}`)
     } catch (err) {
         console.log(err)
+        console.log('req.body.board',req.body.messageBoard)
         res.render(`posts/new`, {
-            post: post
+            post: post,
+            boards:[req.body.messageBoard],
         })
     }
 })
