@@ -1,3 +1,13 @@
-New board
-<br>
-<a href="boards/1">Back</a>
+<h2>New Board</h2>
+<form action="/boards" method="POST">
+    <div>
+        <label>Name</label>
+        <input type="text" name="name" value="<%= board.name %>">
+        <label>Category</label>
+        <input type="text" name="category" value="<%= board.category %>">
+    </div>
+    <div>
+        <a href="/boards/1">Cancel</a>
+        <button type="submit">Create</button>
+    </div>
+</form>

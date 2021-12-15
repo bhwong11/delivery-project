@@ -1,0 +1,43 @@
+* {
+  /* border: red 1px solid; */
+}
+
+body {
+  height: 1000px;
+  width: 400px;
+  border: slategrey 1px solid;
+}
+
+.logo-container {
+  display: flex;
+  justify-content: center;
+}
+
+.logo {
+  width: 50%;
+}
+
+h1 {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  margin-bottom: 0;
+}
+
+.button-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.sign-button {
+  font-family: 'Roboto', sans-serif;
+  font-size: large;
+  width: 75%;
+  margin: 5px 0;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.sign-button:hover {
+  background-color: rgb(142, 142, 142);
+}

@@ -1,3 +1,11 @@
-edit board
-<br>
-<a href="/board/1">Back</a>
+<h2>Edit Board</h2>
+<form action="/boards/<%= board.id %>?_method=PUT" method="POST">
+    <div>
+        <label>Name</label>
+        <input type="text" name="name" value="<%= board.name %>">
+    </div>
+    <div>
+        <a href="/boards/<%= board.id %>">Cancel</a>
+        <button type="submit">Update</button>
+    </div>
+</form>
