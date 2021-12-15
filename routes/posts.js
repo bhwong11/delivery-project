@@ -2,11 +2,13 @@ const express = require(`express`)
 const router = express.Router()
 const Board = require(`../models/MessageBoard`)
 const Post = require(`../models/Post`)
+const User = require(`../models/User`)
 
 ////new Post
 router.get(`/new`, async (req,res) => {
     try {
-        const boards = await Board.find({})
+        let user = await User.findById(req.session.currentUser.id).populate('messageBoards');
+        const boards = user.messageBoards;
         const params = { 
             boards: boards,
             post: new Post()
