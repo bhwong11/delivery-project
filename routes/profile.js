@@ -23,7 +23,6 @@ router.get(`/:id`, async (req,res) => {
 })
 
 router.get(`/:id/edit`,async(req,res)=>{
-    const user = await User.findById(req.params.id)
     try{
         const user = await User.findById(req.params.id);
         return res.render(`profile/edit`,{user});
@@ -32,7 +31,7 @@ router.get(`/:id/edit`,async(req,res)=>{
     }
 })
 
-router.post(`/:id/edit`, async (req,res) => {
+router.put(`/:id/edit`, async (req,res) => {
     try{
         
         const unupdatedUser = await User.findById(req.params.id);
@@ -75,7 +74,7 @@ router.post(`/:id/edit`, async (req,res) => {
             await User.updateOne({_id:unupdatedUser._id},{$push: {messageBoards: companyMessageBoard._id}},done)
         }
 
-        if(newCity){
+        if(newLocation){
             //pull user out of old board
             await MessageBoard.updateOne({$and:[
                 {users:{$in:[unupdatedUser._id]}},
@@ -108,21 +107,20 @@ router.post(`/:id/edit`, async (req,res) => {
         const updateBody = {
             email:req.body.email,
             username:req.body.username,
-            location:req.body.location,
+            city:req.body.city,
             company:req.body.company,
         }
 
-        const updatedUser = await User.findByIdAndUpdate(req.userId,updateBody,{new:true}).populate('messageBoards').exec((err, messageBoards) => {
-            console.log("Populated User " + messageBoards);
-          })
+        const updatedUser = await User.findByIdAndUpdate(req.params.id,updateBody,{new:true}).populate('messageBoards')
         if(!updatedUser){
-            return res.redirect('/index',{err:'updated user was no able to be found'})
+            return res.redirect('/index')
         }
+        console.log(updatedUser._id)
 
-        res.redirect(`profile/${updatedUser._id}`)
+        return res.redirect(`/profile/${updatedUser._id}`)
     }catch(err){
         console.log(err)
-        return res.redirect('/index',{err})
+        return res.redirect('/index')
     }
     
 })
