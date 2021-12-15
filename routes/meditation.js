@@ -1,8 +1,12 @@
-const express = require(`express`)
-const router = express.Router()
+const express = require(`express`);
+const router = express.Router();
 
-router.get(`/`, (req,res) => {
-    res.render(`meditation/feelings`)
-})
+router.get(`/`, (req, res) => {
+  res.render(`meditation/feelings`);
+});
 
-module.exports = router
+router.get(`/spotify`, (req, res) => {
+  res.render(`meditation/spotify`);
+});
+
+module.exports = router;
