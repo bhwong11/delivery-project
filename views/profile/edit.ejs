@@ -3,47 +3,42 @@ edit profile
 <form method="POST" action="/profile/<%=user.id%>/edit?_method=PUT">
     <label for="city">Location</label>
     <select id="city" name="city">
-        <%if(user.company === 'Minneapolis'){%>
+        <%if(user.city === 'Minneapolis'){%>
             <option value="Minneapolis" selected>Minneapolis, MN</option>
             <%}else{%>
                 <option value="Minneapolis">Minneapolis, MN</option>
                 <%}%>
-        <%if(user.company === 'St.Louis'){%>
+        <%if(user.city === 'St.Louis'){%>
             <option value="St.Louis" selected>St.Louis, MI</option>
             <%}else{%>
                 <option value="St.Louis">St.Louis, MI</option>
                 <%}%>
-        <%if(user.company === 'St.Louis'){%>
-            <option value="St.Louis" selected>St.Louis, MI</option>
-            <%}else{%>
-                <option value="St.Louis">St.Louis, MI</option>
-                <%}%>
-        <%if(user.company === 'New York'){%>
+        <%if(user.city === 'New York'){%>
             <option value="New York" selected>New York, NY</option>
             <%}else{%>
                 <option value="New York">New York, NY</option>
                 <%}%>
-        <%if(user.company === 'Los Angelas'){%>
+        <%if(user.city === 'Los Angelas'){%>
             <option value="Los Angelas" selected>Los Angelas, CA</option>
             <%}else{%>
                 <option value="Los Angelas">Los Angelas, CA</option>
                 <%}%>
-        <%if(user.company === 'Washington D.C.'){%>
+        <%if(user.city === 'Washington D.C.'){%>
             <option value="Washington D.C." selected>Washington D.C.</option>
             <%}else{%>
                 <option value="Washington D.C.">Washington D.C.</option>
                 <%}%>
-        <%if(user.company === 'Chicago'){%>
+        <%if(user.city === 'Chicago'){%>
             <option value="Chicago" selected>Chicago, IL</option>
             <%}else{%>
                 <option value="Chicago">Chicago, IL</option>
                 <%}%>
-        <%if(user.company === 'Denver'){%>
+        <%if(user.city === 'Denver'){%>
             <option value="Denver" selected>Denver ,CO</option>
             <%}else{%>
                 <option value="Denver">Denver ,CO</option>
                 <%}%>
-        <%if(user.company === 'Las Vegas'){%>
+        <%if(user.city === 'Las Vegas'){%>
             <option value="Las Vegas" selected>Las Vegas, NV</option>
             <%}else{%>
                 <option value="Las Vegas">Las Vegas, NV</option>
