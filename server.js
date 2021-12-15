@@ -39,7 +39,15 @@ app.use(
   })
 );
 
-//pull 
+//auth reuqired middleware
+const authRequired = function (req, res, next) {
+  if(req.session.currentUser){
+    return next();
+  }
+  return res.redirect("/");
+}
+
+//pull message board info
 const {MessageBoard} = require('./models')
 app.use(async function (req, res, next) {
   res.locals.user = req.session.currentUser;
@@ -54,9 +62,9 @@ db.on(`error`, (error) => console.error(error));
 db.once(`open`, () => console.log(`Connection Established`));
 
 app.use(`/`, authRouter);
-app.use(`/profile`, profileRouter);
-app.use(`/posts`, postsRouter);
-app.use(`/boards`, boardsRouter);
-app.use(`/meditation`, meditationRouter);
+app.use(`/profile`,authRequired, profileRouter);
+app.use(`/posts`,authRequired, postsRouter);
+app.use(`/boards`,authRequired, boardsRouter);
+app.use(`/meditation`,authRequired, meditationRouter);
 
 app.listen(process.env.PORT || 3000);
