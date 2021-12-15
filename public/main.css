@@ -1,5 +1,5 @@
 * {
-  /* border: red 1px solid; */
+  border: red 1px solid;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
   font-family: 'Roboto', sans-serif;
@@ -438,6 +438,7 @@ iframe{
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
   min-height: 100vh;
   margin: 0;
   background-color: rgb(125, 183, 196);
@@ -449,9 +450,10 @@ iframe{
   position: relative;
   height: 100px;
   width: 100px;
+  top: -200px;
   /* Animation */
   transform: rotate(-45deg) scale(1);
-  animation: pulse 5s linear infinite;
+  animation: pulse 7s linear infinite;
 }
 
 .heart::after {
@@ -492,5 +494,50 @@ iframe{
     opacity: 0.5;
   }
 }
-/* ================================ */
 
+.breathe-progress-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: lightgrey;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  /* margin-bottom: 50px; */
+  border-radius: 10px;
+}
+
+.breathe-progress {
+  height: 15px;
+  width: 6%;
+  background-color: rgb(84, 93, 213);
+  border-radius: 10px;
+  z-index: 1;
+}
+/* ================================ */
+.meter {
+  height: 5px;
+  position: relative;
+  background: #f3efe6;
+  overflow: hidden;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+}
+
+.progress {
+  background-color: #e4c465;
+  animation: progressBar 3s ease-in-out;
+  animation-fill-mode: both;
+}
+
+@keyframes progressBar {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
+  }
+}
