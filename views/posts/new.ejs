@@ -1,10 +1,17 @@
-<h2 class="new-post-title">New Post</h2>
+<div class="new-post-title">
+    <a href="/boards/"><i class="fas fa-arrow-left"></i></a>
+    <h2>New Post</h2>
+    <button type="submit">Post</button>
+</div>
 <form action="/posts" method="POST">
     <div class="new-post-container">
         <label>Title</label>
         <input type="text" name="title" value="<%= post.title %>">
         <label>Content</label>
-        <textarea type="text" name="content" value="<%= post.content %>"></textarea>
+        <div class="post-main-content">
+            <input type="file" name="postImg" class="filepond">
+            <textarea type="text" name="content" value="<%= post.content %>"></textarea>
+        </div>
         <label>Board</label>
         <select name="messageBoard">
             <% boards.forEach(board => { %>
@@ -18,13 +25,5 @@
         <label>Publish Date</label>
         <input type="date" name="date_created" 
             value="<%= post.date_created == null ? '' : post.date_created.toISOString().split('T')[0] %>">
-    </div>
-    <div>
-        <label>Cover</label>
-        <input type="file" name="postImg" class="filepond">
-    </div>
-    <div>
-        <a href="/boards/">Cancel</a>
-        <button type="submit">Create</button>
     </div>
 </form>

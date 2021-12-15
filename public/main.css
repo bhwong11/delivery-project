@@ -1,5 +1,4 @@
 * {
-  border: red 1px solid;
   box-sizing: border-box;
   transition: all 0.2s ease-in-out;
   font-family: 'Roboto', sans-serif;
@@ -278,6 +277,13 @@ button:hover {
 .single-board img {
   border-radius: 10px;
 }
+.single-board a{
+  font-size: 10px;
+  color: #B5D3FF;
+}
+.single-board a:hover{
+  color:white;
+}
 /* ----------- */
 .post-container{
     display: flex;
@@ -328,9 +334,19 @@ button:hover {
 /* ===========NEW POST============= */
 .new-post-title {
   width: 100%;
+  display: flex;
+  justify-content: space-between;
   background-color: #407BFF;
   color: white;
   padding: 2% 5%;
+}
+.new-post-title button{
+  background: none;
+  color: white;
+}
+.new-post-title i {
+  color: white;
+  padding-top: 6px;
 }
 
 .new-post-container{
@@ -340,6 +356,21 @@ button:hover {
     background-color: #DBE6FF;
 }
 
+.post-main-content{
+  background-color: lightgrey;
+  border-radius: 10px;
+}
+
+.new-post-row{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10%;
+}
+.new-post-row i{
+  font-size: 20px;
+}
+
 .new-post-container label {
   font-weight: bold;
   margin-bottom: 4px;
@@ -347,7 +378,7 @@ button:hover {
 
 .new-post-container input,
 .new-post-container textarea {
-  background-color: white;
+  background-color: lightgrey;
   padding: 10px 5px 5px 5px;
   border: none;
   border-radius: 5px;
@@ -362,6 +393,7 @@ button:hover {
 
 .new-post-container textarea {
   height: 50vh;
+  width: 100%;
 }
 
 .large-input {
@@ -427,7 +459,35 @@ button:hover {
 }
 /* ================================ */
 /* ===========PROFILE============== */
-.profile
+.profile-body{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 100%;
+}
+.profile-body img{
+  width: 25%;
+  border-radius: 50%;
+  justify-self: center;
+  align-self: center;
+}
+.profile-body a{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.username{
+  text-align: center;
+  margin: 10px 0 10px 0;
+}
+
+.user-info{
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 4px solid #83B5FF;
+  margin-bottom: 20px;
+}
 /* ================================ */
 iframe{
   height: 100%;
