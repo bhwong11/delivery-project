@@ -38,8 +38,11 @@ app.use(
   })
 );
 
-app.use(function (req, res, next) {
+//pull 
+const {MessageBoard} = require('./models')
+app.use(async function (req, res, next) {
   res.locals.user = req.session.currentUser;
+  res.locals.boards = await MessageBoard.find({})
   next();
 });
 
