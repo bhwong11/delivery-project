@@ -44,14 +44,93 @@ h1 {
 }
 /* ================================ */
 
-/* ==========Signup1============= */
-.form-one-container {
+.signup-container {
+  font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.form-one-input {
-  width: 75%;
-  margin: 10px 0;
+.signup-header {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  margin-bottom: 15px;
 }
+
+/* .icon-truck {
+  size: 20px;
+} */
+
+.truck {
+  width: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  /* background-color: rgb(238, 238, 238); */
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.progress-one {
+  /* position: absolute; */
+  height: 15px;
+  width: 33.3%;
+  background-color: rgb(22, 216, 42);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.progress-two {
+  height: 15px;
+  width: 66.6%;
+  background-color: rgb(22, 216, 42);
+  border-radius: 10px;
+}
+
+.progress-three {
+  height: 15px;
+  width: 95%;
+  background-color: rgb(22, 216, 42);
+  border-radius: 10px;
+}
+
+.signup-input {
+  background-color: rgb(220, 220, 220);
+  border: none;
+  height: 25px;
+  width: 75%;
+  margin: 5px 0 20px 0;
+  border-radius: 5px;
+}
+
+.signup-button {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+/* ==========Signup1============= */
+
+.signform-label {
+  /* justify-content: left; */
+}
+
+/* ================================ */
+
+/* ==========Signup2============= */
+.signup-dropdown {
+  background-color: rgb(220, 220, 220);
+  border: none;
+  height: 25px;
+  width: 75%;
+  margin: 5px 0 20px 0;
+  border-radius: 5px;
+}
+/* ================================ */
