@@ -3,7 +3,7 @@ show board
 and show post index
 <br>
 <a href="/boards/new">New Board</a>
-<a href="/boards/1/edit">Edit Board</a>
+
 <br>
 <a href="/posts/new">New Post</a>
 <a href="/posts/1/edit">Edit Post</a>
@@ -14,6 +14,7 @@ and show post index
 <div>
     <% posts.forEach(post => { %>
         <div><%= post.title %></div>
+        <div><%= post.content %></div>
         <form method="POST" action="<%= `/posts/${post.id}` %>?_method=DELETE">
             <button type="submit">Delete</button>
         </form>
@@ -25,10 +26,13 @@ and show post index
 <h2>ALL Boards</h2>
 <div>
     <% boards.forEach(board => { %>
-        <div><%= board.name %></div>
-        <form method="POST" action="<%= `/boards/${board.id}` %>?_method=DELETE">
-            <button type="submit">Delete</button>
-        </form>
+        <div>
+            <a href="/boards/<%= board.id %>"><%= board.name %></a>
+            <form method="POST" action="<%= `/boards/${board.id}` %>?_method=DELETE">
+                <button type="submit">Delete</button>
+            </form>
+            <a href="/boards/<%= board.id %>">Edit Board</a>
+        </div>
     <% }) %>
 </div>
 
