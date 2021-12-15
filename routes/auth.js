@@ -35,7 +35,7 @@ router.post('/signup2',async(req,res)=>{
             ...req.body,
             ...req.session.userInfo,
         }
-        return res.redirect('/signup2')
+        return res.redirect('/signup3')
     }catch(err){
         console.log(error.message)
         return res.send(error.message)
@@ -122,6 +122,10 @@ router.post('/signup3',async(req,res,next)=>{
         console.log(error.message)
         return res.send(error.message)
     }
+})
+
+router.get('/login',(req,res)=>{
+    return res.render('/login')
 })
 
 

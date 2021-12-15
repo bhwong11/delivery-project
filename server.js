@@ -8,7 +8,7 @@ const expressLayouts = require(`express-ejs-layouts`);
 const session = require('express-session');
 const MongoStore = require('connect-mongo');
 
-const indexRouter = require(`./routes/index`);
+const authRouter = require(`./routes/auth`);
 const profileRouter = require(`./routes/profile`);
 const postsRouter = require(`./routes/posts`);
 const boardsRouter = require(`./routes/boards`);
@@ -45,7 +45,7 @@ const db = mongoose.connection;
 db.on(`error`, (error) => console.error(error));
 db.once(`open`, () => console.log(`Connection Established`));
 
-app.use(`/`, indexRouter);
+app.use(`/`, authRouter);
 app.use(`/profile`, profileRouter);
 app.use(`/posts`, postsRouter);
 app.use(`/boards`, boardsRouter);
