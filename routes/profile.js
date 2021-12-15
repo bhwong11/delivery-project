@@ -3,7 +3,7 @@ const router = express.Router()
 const {User,MessageBoard,Post} = require('../models');
 
 
-router.get(`/:id`, (req,res) => {
+router.get(`/:id`, async (req,res) => {
     try{
         const foundUser = await User.findById(req.userId).populate('messageBoards').exec((err, messageBoards) => {
             console.log("Populated User " + messageBoards);
