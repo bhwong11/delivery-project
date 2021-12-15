@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
         type:String,
         default:'Other',
     },
-    location:{
+    city:{
         type:String,
         default:'N/A',
     },

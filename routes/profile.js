@@ -6,23 +6,20 @@ const {User,MessageBoard,Post} = require('../models');
 router.get(`/:id`, async (req,res) => {
     try{
         let context = null
-        const foundUser = await User.findById(req.params.id).populate('messageBoards').exec((err, messageBoards) => {
-            console.log("Populated User " + messageBoards);
-          })
+        const foundUser = await User.findById(req.params.id).populate('messageBoards');
         if(foundUser){
-            context = foundUser
+            context = {user:foundUser}
         }else{
-            return res.redirect('/index',{err:'no found user with that ID'})
+            console.log('no found user')
+            return res.redirect('/index')
         }
+        res.render(`profile/show`,context)
         //insert error hanlding if no found User here
     }catch(err){
         console.log(err)
-        res.status(500).json({
-            status:500,
-            message:'internal server error'
-        })
+        return res.redirect('/index')
     }
-    res.render(`profile/show`,context)
+    
 })
 
 router.get(`/:id/edit`,async(req,res)=>{
@@ -64,7 +61,7 @@ router.post(`/:id/edit`, async (req,res) => {
                 { new: true })
             
             //create message board if not existing, push user if existing
-            let companyMessageBoard = await MessageBoard.findOne({company:req.body.company})
+            let companyMessageBoard = await MessageBoard.findOne({name:req.body.company})
             if(!companyMessageBoard){
                 companyMessageBoard = await MessageBoard.create({
                     name:req.body.company,
@@ -92,7 +89,7 @@ router.post(`/:id/edit`, async (req,res) => {
                 { new: true })
             
             //create message board if not existing, push user if existing
-            let companyMessageBoard = await MessageBoard.findOne({city:req.body.city})
+            let companyMessageBoard = await MessageBoard.findOne({name:req.body.city})
             if(!cityMessageBoard){
                 cityMessageBoard = await MessageBoard.create({
                     name:req.body.city,
