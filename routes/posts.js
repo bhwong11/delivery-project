@@ -30,6 +30,7 @@ router.post(`/`, async (req,res) => {
         res.redirect(`/boards/${req.body.messageBoard}`)
     } catch (err) {
         console.log(err)
+        console.log('req.body.board',req.body.messageBoard)
         res.render(`posts/new`, {
             post: post,
             boards: [req.body.messageBoard]

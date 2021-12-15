@@ -1,3 +1,46 @@
 edit profile
 <br>
+<form method="POST" action="/profile/<%=user.id%>/edit?_method=PUT">
+    <label for="city">Location</label>
+    <select id="city" name="city">
+        <option value="Minneapolis">Minneapolis, MN</option>
+        <option value="St.Louis">St.Louis ,MI</option>
+        <option value="New York">New York ,NY</option>
+        <option value="Los Angelas">Los Angelas ,CA</option>
+        <option value="Washington D.C.">Washington D.C.</option>
+        <option value="Chicago">Chicago, IL</option>
+        <option value="Denver">Denver ,CO</option>
+        <option value="Las Vegas">Las Vegas, NV</option>
+    </select>
+
+    <label for="company">Company</label>
+    <select id="company" name="company">
+        <%if(user.company === 'amazon'){%>
+            <option value="amazon" selected>Amazon</option>
+            <%}else{%>
+                <option value="amazon">Amazon</option>
+                <%}%>
+        <%if(user.company === 'fedex'){%>
+            <option value="fedex" selected>Fedex</option>
+            <%}else{%>
+                <option value="fedex">Fedex</option>
+                <%}%>
+        <%if(user.company === 'uber'){%>
+            <option value="uber" selected>Uber</option>
+            <%}else{%>
+                <option value="uber">Uber</option>
+                <%}%>
+        <%if(user.company === 'ups'){%>
+            <option value="ups" selected>Ups</option>
+            <%}else{%>
+                <option value="ups">Ups</option>
+                <%}%>
+    </select>
+
+    <label for="email">email</label>
+    <input type="email" name="email" id="email" value="<%=user.email%>">
+
+    <button>submit changes</button>
+
+</form>
 <a href="/profile/1">Back</a>

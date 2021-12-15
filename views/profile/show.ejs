@@ -1,5 +1,17 @@
 profile page
 <br>
-<a href="/profile/1/edit">Edit</a>
+<a href="/profile/<%=user._id%>/edit">Edit</a>
 <br>
+    <div>
+        Username: <%=user.name%>
+    </div>
+    <div>
+        Location: <%=user.city%>
+    </div>
+    <div>
+        Company:<%=user.company%>
+    </div>
+    <div>
+        Email:<%=user.email%>
+    </div>
 <%- include(`../partials/nav`) %>

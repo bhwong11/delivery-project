@@ -82,7 +82,7 @@ router.post('/signup3',async(req,res,next)=>{
         console.log('newOld done')
 
         //join company message board for when user joins in, create one if it doesn't exist
-        let companyMessageBoard = await MessageBoard.findOne({company:userInfo.company})
+        let companyMessageBoard = await MessageBoard.findOne({name:userInfo.company})
         if(!companyMessageBoard){
             companyMessageBoard = await MessageBoard.create({
                 name:userInfo.company,
@@ -97,7 +97,7 @@ router.post('/signup3',async(req,res,next)=>{
         console.log('company board done')
 
         //join city message board for when user joins in, create one if it doesn't exist
-        let cityMessageBoard = await MessageBoard.findOne({city:userInfo.city})
+        let cityMessageBoard = await MessageBoard.findOne({name:userInfo.city})
         if(!cityMessageBoard){
             cityMessageBoard = await MessageBoard.create({
                 name:userInfo.city,
@@ -117,7 +117,7 @@ router.post('/signup3',async(req,res,next)=>{
             email: createdUser.email,
         }
 
-        return res.redirect(`/boards/show/${newOldMessageBoard._id}`);
+        return res.redirect(`/boards/${newOldMessageBoard._id}`);
 
     }catch(error){
         console.log(error.message)
@@ -125,21 +125,23 @@ router.post('/signup3',async(req,res,next)=>{
     }
 })
 
-router.get('/login',(req,res)=>{
-    return res.render('/login')
+router.get('/signin',(req,res)=>{
+    return res.render('profile/signin')
 })
 
 
-router.post('/login', async(req,res,next)=>{
+router.post('/signin', async(req,res,next)=>{
     try{
         //check if user exist
-        const foundUser = await User.findOne({username: req.body.username});
+        const foundUser = await User.findOne({username: req.body.username}).select('+password');
         if(!foundUser){
             console.log(`user does not exist`)
             return res.redirect('/index')
         }
+        console.log(foundUser)
         
         //check password
+        console.log(req.body.password,foundUser.password)
         const matchedPassword = await bcrypt.compare(req.body.password,foundUser.password)
         if(!matchedPassword){
             //return res.redirect("/register")
@@ -156,7 +158,7 @@ router.post('/login', async(req,res,next)=>{
         //find all boards and use id of the first one
         const newOldBoards = await MessageBoard.find({})
 
-        return res.redirect(`/boards/show/${newOldBoards[0]._id}`);
+        return res.redirect(`/boards/${newOldBoards[0]._id}`);
 
     }catch(error){
         console.log(error.message);
