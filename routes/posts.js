@@ -18,21 +18,21 @@ router.get(`/new`, async (req,res) => {
 })
 ////create Post
 router.post(`/`, async (req,res) => {
-    console.log(`!! ATENTION !!`)
-    console.log(req.body)
     const post = new Post({
         title: req.body.title,
         content: req.body.content, 
         date_created: new Date(req.body.date_created),
-        user: req.session.currentUser
+        user: req.session.currentUser._id,
+        messageBoard: req.body.messageBoard
     })
     try {
         const newPost = await post.save()
-        res.redirect(`boards/1`)
+        res.redirect(`/boards/${req.body.messageBoard}`)
     } catch (err) {
         console.log(err)
         res.render(`posts/new`, {
-            post: post
+            post: post,
+            boards: [req.body.messageBoard]
         })
     }
 })
@@ -56,7 +56,8 @@ router.delete(`/:id`, async (req,res) => {
                 errorMessage: `Could not remove post`
             })
         } else {
-            res.redirect(`/`)
+            console.log(`THIS IS HITTING THE ERROR!!!`)
+            res.redirect(`/boards/1`)
         }
     }
 })
