@@ -3,10 +3,12 @@
   box-sizing: border-box;
   transition: all .2s ease-in-out;
   font-family: 'Roboto', sans-serif;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  height: 1000px;
+  height: 80vh;
   width: 400px;
   border: slategrey 1px solid;
 }
@@ -20,57 +22,91 @@ a{
 a:hover{
     color: lightgrey;
 }
+
+button{
+  border: none;
+}
+button:hover{
+  cursor: pointer;
+}
 /* ==========NAV=============== */
 .primary-nav{
-    height: 50px;
-    border: 1px solid grey;
-    width: 100%;
+    padding: 12px;
+    background-color: royalblue;
+    width: 400px;
     display: flex;
     justify-content: space-around;
     align-items: center;
+    position: sticky;
+    bottom: 0;
 }
+
+.nav-piece{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 11px;
+  color: lightgrey;
+}
+.nav-piece i{
+  font-size: 24px;
+  margin-bottom: 5px;
+}
+
+.nav-piece:hover{
+  color: white;
+}
+
 /* ============================ */
 /* ==========Index============= */
+.index-body{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
 .logo-container {
   display: flex;
   justify-content: center;
+  margin-top: 80px;
 }
 
 .logo {
   width: 70%;
 }
 
-h1 {
-  text-align: center;
-  font-family: 'Roboto', sans-serif;
-  margin-bottom: 0;
-}
-
 .button-container {
   display: flex;
   align-items: center;
   flex-direction: column;
-}
-
-.sign-button {
-  font-family: 'Roboto', sans-serif;
-  font-size: large;
-  font-weight: bold;
-  width: 75%;
-  margin: 5px 0;
-  padding: 10px;
-  border-radius: 10px;
-}
-.sign-button:hover {
-  background-color: rgb(142, 142, 142);
+  margin-bottom: 100px;
 }
 /* ================================ */
+.signup-body{
+  padding-top: 70px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+.signup-body h2{
+  font-weight: bold;
+  font-size: 30px;
+}
 
 .signup-container {
   font-family: 'Roboto', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 100%;
+  padding: 0 10%;
+  font-weight: bold;
+}
+.signup-container label{
+  align-self: flex-start;
 }
 
 .signup-header {
@@ -103,11 +139,11 @@ h1 {
   display: flex;
   align-items: center;
   position: relative;
-  background-color: rgb(238, 238, 238);
-  width: 76%;
-  margin-left: 12%;
-  margin-right: 12%;
-  margin-bottom: 20px;
+  background-color: lightgrey;
+  width: 80%;
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 50px;
   border-radius: 10px;
 }
 
@@ -137,25 +173,36 @@ h1 {
   background-color: rgb(220, 220, 220);
   border: none;
   height: 25px;
-  width: 75%;
+  width: 100%;
   padding: 0px 5px;
-  margin: 5px 0 20px 0;
+  margin: 5px 0 30px 0;
   border-radius: 5px;
 }
-
 .signup-input:focus{
     outline: none;
 }
 
-.signup-button {
+.signup-button, .signin-button {
   padding: 10px;
-  margin: 10px 0;
+  margin: 5px 0;
   border-radius: 5px;
+  font-family: 'Roboto', sans-serif;
+  font-size: large;
+  font-weight: bold;
+  width: 75%;
+  border-radius: 8px;
 }
+.signup-button{
+  background-color: lightblue;
+}
+.signin-button{
+  background-color: royalblue;
+}
+
 /* ==========Signup1============= */
 
 .signform-label {
-  /* justify-content: left; */
+  align-items: flex-start;
 }
 
 /* ================================ */
@@ -165,8 +212,8 @@ h1 {
   background-color: rgb(220, 220, 220);
   border: none;
   height: 25px;
-  width: 77.5%;
-  margin: 5px 0 20px 0;
+  width: 100%;
+  margin: 5px 0 30px 0;
   border-radius: 5px;
 }
 /* ================================ */
@@ -175,15 +222,36 @@ h1 {
     display: flex;
     justify-content: center;
     width: 100%;
+    height: 100%;
 }
 .board-body h3{
-    text-align: center;
-    font-size: 16px;
+    margin: 20px 0 -5px 10px;
+    font-size: 12px;
+    color: white;
+}
+.board-body a{
+  color: white;
 }
 
 .board-nav{
     width: 20%;
-    background-color: lightgrey;
+    background-color: darkblue;
+    color: white;
+}
+
+.new-board{
+  border: 1px dashed white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  height: 60px;
+  width: 60px;
+  border-radius: 10px;
+}
+.new-board:hover{
+  border: 1px dashed lightgray;
+  color: lightgray;
 }
 
 .single-board{
@@ -192,7 +260,7 @@ h1 {
     padding: 10px;
 }
 .single-board img{
-    border-radius: 15px;
+    border-radius: 10px;
 }
 /* ----------- */
 .post-container{
@@ -201,13 +269,26 @@ h1 {
     align-items: center;
     width: 80%;
 }
+.post-container h2{
+    width: 100%;
+    background-color: royalblue;
+    color: white;
+    padding: 20px 0 20px 10%;
+    margin-bottom: 20px;
+}
+.post-container p {
+    align-self: flex-start;
+    padding: 0 0 0 10%;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
 .create-post{
     align-self: flex-start;
     margin-left: 10%;
-    background-color: lightgrey;
+    background-color: royalblue;
     padding: 5px 10px;
-    border-radius: 5px;
+    border-radius: 8px;
     margin-bottom: 10px;
 }
 
@@ -229,15 +310,28 @@ h1 {
 }
 /* ================================ */
 /* ===========NEW POST============= */
+.new-post-title{
+  width: 100%;
+  background-color: royalblue;
+  color: white;
+  padding: 2% 5%;
+}
+
 .new-post-container{
     display: flex;
     flex-direction: column;
     padding: 5%;
+    background-color: lightblue;
+}
+
+.new-post-container label{
+  font-weight: bold;
+  margin-bottom: 4px;
 }
 
 .new-post-container input, .new-post-container textarea{
-    background-color: lightgrey;
-    padding: 5px;
+    background-color: white;
+    padding: 10px 5px 5px 5px;
     border: none;
     border-radius: 5px;
     font-size: 18px;

@@ -1,16 +1,17 @@
-<h1 class="signup-header">Sign Up</h2>
-
-<!-- <i class="fas fa-truck"></i> -->
-<div class="progress-container">
-  <div class="progress-one"></div>
-  <img class="truck" src="/images/truck.png" alt="">
+<div class="signup-body">
+  <h2 class="signup-header">Sign Up</h2>
+  
+  <div class="progress-container">
+    <div class="progress-one"></div>
+    <img class="truck" src="/images/truck.png" alt="">
+  </div>
+  <form class="signup-container" method="POST" action="/signup1">
+      <label class="signform-label" for="name">What is your name?</label>
+      <input class="signup-input" type="text" name="name" id="name">
+  
+      <label for="email">What is your email?</label>
+      <input class="signup-input" type="email" name="email" id="email">
+      <button class="signup-button">Continue</button>
+  
+  </form>
 </div>
-<form class="signup-container" method="POST" action="/signup1">
-    <label class="signform-label" for="name">What is your name?</label>
-    <input class="signup-input" placeholder="enter name" type="text" name="name" id="name">
-
-    <label for="email">What is your email?</label>
-    <input class="signup-input" placeholder="enter email" type="email" name="email" id="email">
-    <button class="signup-button">Continue</button>
-
-</form>
