@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 const {User,MessageBoard} = require('../models');
 let userInfo = null
 
-router.get('/index',(req,res,next)=>{
+router.get('/',(req,res,next)=>{
     res.render('index');
 })
 
@@ -50,7 +50,7 @@ router.post('/signup3',async(req,res,next)=>{
         const foundUser = await User.exists({$or:[{email:userInfo.email},{username:req.body.username}]})
         if(foundUser){
             console.log('User already exist',foundUser);
-            return res.render("index", {err: "User already exists"});
+            return res.redirect('/');
         }
 
         //if user does not exist
@@ -136,7 +136,7 @@ router.post('/signin', async(req,res,next)=>{
         const foundUser = await User.findOne({username: req.body.username}).select('+password');
         if(!foundUser){
             console.log(`user does not exist`)
-            return res.redirect('/index')
+            return res.redirect('/')
         }
         console.log(foundUser)
         
@@ -146,7 +146,7 @@ router.post('/signin', async(req,res,next)=>{
         if(!matchedPassword){
             //return res.redirect("/register")
             console.log('invalid user info')
-            return res.redirect('/index');
+            return res.redirect('/');
         }
 
         req.session.currentUser = {
@@ -170,7 +170,7 @@ router.post('/signin', async(req,res,next)=>{
 router.get('/logout',async(req,res,next)=>{
     try{
         await req.session.destroy();
-        return res.redirect('/index')
+        return res.redirect('/')
     }catch(error){
         console.log(error.message);
         return res.send(error.message)
