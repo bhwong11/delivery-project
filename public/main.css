@@ -350,3 +350,16 @@ button:hover{
     height: 50vh;
 }
 /* ================================ */
+/* =========MEDITATION============= */
+.meditation-body{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+}
+
+.meditation-body img{
+  width: 50%;
+}
+/* ================================ */
