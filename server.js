@@ -28,7 +28,7 @@ app.use(express.urlencoded({ limit: `10mb`, extended: false }))
 app.use(
   session({
     store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URI || 'mongodb://localhost:27017/hackathon',
+      mongoUrl: process.env.DATABASE_URL || 'mongodb://localhost:27017/hackathon',
     }),
     secret: 'secretThatWillGoInENVWhenNotLazy',
     resave: false,
