@@ -10,7 +10,7 @@ router.get(`/:id`, async (req,res) => {
         if(foundUser){
             context = {user:foundUser}
         }else{
-            return res.redirect('/index')
+            return res.redirect('/')
         }
         return res.render(`profile/show`,context)
         //insert error hanlding if no found User here
@@ -28,7 +28,7 @@ router.get(`/:id/edit`,async(req,res)=>{
         const user = await User.findById(req.params.id);
         return res.render(`profile/edit`,{user});
     }catch(err){
-        return res.redirect('/index',{err})
+        return res.redirect('/')
     }
 })
 
@@ -123,13 +123,13 @@ router.put(`/:id/edit`, async (req,res) => {
 
         const updatedUser = await User.findByIdAndUpdate(req.params.id,updateBody,{new:true}).populate('messageBoards')
         if(!updatedUser){
-            return res.redirect('/index')
+            return res.redirect('/')
         }
 
         res.redirect(`/profile/${updatedUser._id}`)
     }catch(err){
         console.log(err)
-        return res.redirect('/index')
+        return res.redirect('/')
     }
     
 })
