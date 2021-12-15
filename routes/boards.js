@@ -31,9 +31,10 @@ router.get(`/:id`, async (req,res) => {
     let posts
     try {
         boards = await Board.find()
-        const board = await Board.findById(req.params.id)
-        posts = await Post.find({ messageBoard: board.id })
-        console.log(board.id)
+        posts = await Post.find()
+        // const board = await Board.findById(req.params.id)
+        // posts = await Post.find({ messageBoard: board.id })
+        // console.log(board.id)
     } catch(err) {
         console.log(err)
     }

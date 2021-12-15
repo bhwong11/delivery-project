@@ -6,15 +6,6 @@
         <label>Content</label>
         <input type="text" name="category" value="<%= post.content %>">
         <label>Board</label>
-        <select name="messageBoard">
-            <% boards.forEach(board => { %>
-                <% if (board.id === post.board) { %>
-                    <option selected label="<%= board.name %>" value="<%= board.id %>"></option>
-                <% } else { %>
-                    <option label="<%= board.name %>" value="<%= board.id %>"></option>
-                <% } %>
-            <% }) %>
-        </select>
         <label>Publish Date</label>
         <input type="date" name="date_created" 
             value="<%= post.date_created == null ? '' : post.date_created.toISOString().split('T')[0] %>">
