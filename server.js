@@ -13,6 +13,7 @@ const authRouter = require(`./routes/auth`);
 const profileRouter = require(`./routes/profile`);
 const postsRouter = require(`./routes/posts`);
 const boardsRouter = require(`./routes/boards`);
+const meditationRouter = require(`./routes/meditation`);
 
 app.set(`view engine`, `ejs`);
 app.set(`views`, __dirname + `/views`);
@@ -52,5 +53,6 @@ app.use(`/`, authRouter);
 app.use(`/profile`, profileRouter);
 app.use(`/posts`, postsRouter);
 app.use(`/boards`, boardsRouter);
+app.use(`/meditation`, meditationRouter);
 
 app.listen(process.env.PORT || 3000);
