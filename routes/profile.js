@@ -1,25 +1,31 @@
-const express = require(`express`);
-const router = express.Router();
-const { User, MessageBoard, Post } = require('../models');
+const express = require(`express`)
+const router = express.Router()
+const {User,MessageBoard,Post} = require('../models');
 
-router.get(`/:id`, async (req, res) => {
-  try {
-    const foundUser = await User.findById(req.userId)
-      .populate('messageBoards')
-      .exec((err, messageBoards) => {
-        console.log('Populated User ' + messageBoards);
-      });
-    if (foundUser) {
-      return res.status(200).json({
-        status: 200,
-        message: 'success',
-        user: foundUser,
-      });
-    } else {
-      return res.status(400).json({
-        status: 400,
-        message: 'No User with that id was found',
-      });
+
+router.get(`/:id`, async (req,res) => {
+    try{
+        const foundUser = await User.findById(req.userId).populate('messageBoards').exec((err, messageBoards) => {
+            console.log("Populated User " + messageBoards);
+          })
+        if(foundUser){
+            return res.status(200).json({
+                status:200,
+                message:'success',
+                user:foundUser,
+            })
+        }else{
+            return res.status(400).json({
+                status:400,
+                message:'No User with that id was found',
+            })
+        }
+    }catch(err){
+        console.log(err)
+        res.status(500).json({
+            status:500,
+            message:'internal server error'
+        })
     }
   } catch (err) {
     console.log(err);

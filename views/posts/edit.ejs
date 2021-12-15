@@ -1,3 +1,13 @@
-edit post
-<br>
-<a href="/boards/1">Back</a>
+<h2>Edit Post</h2>
+<form action="/posts/<%= post.id %>?_method=PUT" method="POST">
+    <div>
+        <label>Title</label>
+        <input type="text" name="name" value="<%= post.title %>">
+        <label>Content</label>
+        <input type="text" name="category" value="<%= post.content %>">
+    </div>
+    <div>
+        <a href="/boards/1">Cancel</a>
+        <button type="submit">Update</button>
+    </div>
+</form>

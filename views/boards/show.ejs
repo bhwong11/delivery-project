@@ -2,10 +2,34 @@ show board
 <br>
 and show post index
 <br>
-<a href="/board/new">New Board</a>
-<a href="/board/1/edit">Edit Board</a>
+<a href="/boards/new">New Board</a>
+<a href="/boards/1/edit">Edit Board</a>
 <br>
 <a href="/posts/new">New Post</a>
 <a href="/posts/1/edit">Edit Post</a>
 <br>
+
+<!-- This is the index of posts related to this board -->
+<h2>ALL POSTS</h2>
+<div>
+    <% posts.forEach(post => { %>
+        <div><%= post.title %></div>
+        <form method="POST" action="<%= `/posts/${post.id}` %>?_method=DELETE">
+            <button type="submit">Delete</button>
+        </form>
+    <% }) %>
+</div>
+
+
+<!-- This is the index of boards visible from each board -->
+<h2>ALL Boards</h2>
+<div>
+    <% boards.forEach(board => { %>
+        <div><%= board.name %></div>
+        <form method="POST" action="<%= `/boards/${board.id}` %>?_method=DELETE">
+            <button type="submit">Delete</button>
+        </form>
+    <% }) %>
+</div>
+
 <%- include(`../partials/nav`) %>

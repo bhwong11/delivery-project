@@ -23,11 +23,9 @@ const PostSchema = new mongoose.Schema({
     },
     postImage: {
         type: Buffer,
-        required: true
     }, 
     postImageType: {
         type: String, 
-        required: true
     },
 })
 
