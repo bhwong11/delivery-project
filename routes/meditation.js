@@ -9,4 +9,8 @@ router.get(`/spotify`, (req, res) => {
   res.render(`meditation/spotify`);
 });
 
+router.get(`/breathe`, (req, res) => {
+  res.render(`meditation/breathing`);
+});
+
 module.exports = router;

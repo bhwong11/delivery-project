@@ -146,7 +146,7 @@ router.post('/signin', async(req,res,next)=>{
             console.log(`user does not exist`)
             return res.redirect('/')
         }
-        console.log(foundUser)
+        //console.log('foundUser',foundUser)
         
         //check password
         console.log(req.body.password,foundUser.password)
