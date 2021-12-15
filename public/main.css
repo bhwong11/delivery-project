@@ -355,11 +355,56 @@ button:hover{
   display: flex;
   flex-direction: column;
   width: 100%;
+  height: 100%;
   align-items: center;
-  justify-content: center;
+  padding: 7%;
+  background: linear-gradient(violet,lightblue, lightblue, lightblue);
+}
+
+.meditation-body h3{
+  margin-bottom: 50px;
+}
+
+.feelings-title{
+  align-self: flex-start;
+  margin-bottom: 30px;
 }
 
 .meditation-body img{
-  width: 50%;
+  width: 40%;
+}
+
+
+
+.feelings-container{
+  font-size: 20px;
+  background: linear-gradient(violet, royalblue);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding: 50px 40px 30px 40px;
+}
+.feelings-container i{
+  font-size: 40px;
+  margin: 25px 0 10px 0;
+}
+.feelings-container i:hover{
+  font-size: 50px;
+  cursor: pointer;
+}
+
+.feelings-row{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.faces{
+  height: 80px;
 }
 /* ================================ */
