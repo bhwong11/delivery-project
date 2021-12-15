@@ -353,6 +353,7 @@ button:hover {
   height: 50vh;
 }
 /* ================================ */
+
 /* =========MEDITATION============= */
 .meditation-body {
   display: flex;
@@ -361,29 +362,23 @@ button:hover {
   height: 100%;
   align-items: center;
   padding: 7%;
-  background: linear-gradient(violet,lightblue, lightblue, lightblue);
+  background: linear-gradient(violet, lightblue, lightblue, lightblue);
 }
 
-.meditation-body h3{
+.meditation-body h3 {
   margin-bottom: 50px;
 }
 
-.feelings-title{
+.feelings-title {
   align-self: flex-start;
   margin-bottom: 30px;
 }
 
-<<<<<<< HEAD
 .meditation-body img {
-  width: 50%;
-=======
-.meditation-body img{
   width: 40%;
 }
 
-
-
-.feelings-container{
+.feelings-container {
   font-size: 20px;
   background: linear-gradient(violet, royalblue);
   display: flex;
@@ -393,16 +388,16 @@ button:hover {
   width: 100%;
   padding: 50px 40px 30px 40px;
 }
-.feelings-container i{
+.feelings-container i {
   font-size: 40px;
   margin: 25px 0 10px 0;
 }
-.feelings-container i:hover{
+.feelings-container i:hover {
   font-size: 50px;
   cursor: pointer;
 }
 
-.feelings-row{
+.feelings-row {
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -411,9 +406,8 @@ button:hover {
   font-weight: bold;
 }
 
-.faces{
+.faces {
   height: 80px;
->>>>>>> main
 }
 /* ================================ */
 
@@ -425,6 +419,7 @@ button:hover {
   min-height: 100vh;
   margin: 0;
   background-color: rgb(125, 183, 196);
+  /* background-image: url('/public/images/mountain.jpg'); */
 }
 
 .heart {
