@@ -20,7 +20,11 @@
             value="<%= post.date_created == null ? '' : post.date_created.toISOString().split('T')[0] %>">
     </div>
     <div>
-        <a href="/boards/1">Cancel</a>
+        <label>Cover</label>
+        <input type="file" name="postImg" class="filepond">
+    </div>
+    <div>
+        <a href="/boards/">Cancel</a>
         <button type="submit">Create</button>
     </div>
 </form>
