@@ -2,6 +2,7 @@ const express = require(`express`)
 const router = express.Router()
 const Board = require(`../models/MessageBoard`)
 const Post = require(`../models/Post`)
+const User = require(`../models/User`)
 
 ////Board index
 router.get(`/`, async (req,res) => {
@@ -47,7 +48,11 @@ router.get(`/:id`, async (req,res) => {
     let posts
     let board
     try {
-        boards = await Board.find()
+        //boards = await Board.find()
+        console.log(req.session.currentUser)
+        let user = await User.findById(req.session.currentUser.id).populate('messageBoards');
+        console.log(user)
+        boards = user.messageBoards;
         board = await Board.findById(req.params.id)
         posts = await Post.find({ messageBoard: board.id })
     } catch(err) {
