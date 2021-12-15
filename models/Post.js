@@ -20,7 +20,6 @@ const PostSchema = new mongoose.Schema({
     messageBoard:{
         type:mongoose.Schema.Types.ObjectId,
         ref:'MessageBoard',
-        required: true
     },
     postImage: {
         type: Buffer,

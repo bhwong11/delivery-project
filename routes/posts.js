@@ -24,8 +24,7 @@ router.post(`/`, async (req,res) => {
         title: req.body.title,
         content: req.body.content, 
         date_created: new Date(req.body.date_created),
-        user: req.session.currentUser,
-        messageBoard: req.body.board
+        user: req.session.currentUser
     })
     try {
         const newPost = await post.save()
@@ -43,12 +42,23 @@ router.get(`/:id/edit`, (req,res) => {
     res.render(`posts/edit`)
 })
 
-
-module.exports = router
-
-
-/////New Book
-router.get(`/new`, async (req,res) => { 
-    renderNewPage(res, new Book())
+//delete post
+router.delete(`/:id`, async (req,res) => {
+    let post 
+    try {
+        post = await Post.findById(req.params.id)
+        await post.remove()
+        res.redirect(`/boards/1`)
+    } catch {
+        if (post != null) {
+            res.render(`posts/show`, {
+                post: post, 
+                errorMessage: `Could not remove post`
+            })
+        } else {
+            res.redirect(`/`)
+        }
+    }
 })
 
+module.exports = router
