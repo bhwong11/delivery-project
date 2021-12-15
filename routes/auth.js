@@ -1,7 +1,8 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const {User} = require('../models');
+const {User,MessageBoard} = require('../models');
+let userInfo = null
 
 router.get('/index',(req,res,next)=>{
     res.render('index');
@@ -21,7 +22,7 @@ router.get('/signup3',(req,res,next)=>{
 
 router.post('/signup1',async(req,res)=>{
     try{
-        req.session.userInfo = req.body
+        userInfo = req.body
         return res.redirect('/signup2')
     }catch(err){
         console.log(error.message)
@@ -31,9 +32,9 @@ router.post('/signup1',async(req,res)=>{
 
 router.post('/signup2',async(req,res)=>{
     try{
-        req.session.userInfo = {
+        userInfo = {
             ...req.body,
-            ...req.session.userInfo,
+            ...userInfo,
         }
         return res.redirect('/signup3')
     }catch(err){
@@ -45,10 +46,11 @@ router.post('/signup2',async(req,res)=>{
 router.post('/signup3',async(req,res,next)=>{
     try{
         //if user exist
-        const foundUser = await User.exists({$or:[{email:req.session.userInfo.email},{username:req.body.username}]})
+        console.log('USER INFO',userInfo)
+        const foundUser = await User.exists({$or:[{email:userInfo.email},{username:req.body.username}]})
         if(foundUser){
-            console.log('User already exist');
-            return res.render("/", {err: "User already exists"});
+            console.log('User already exist',foundUser);
+            return res.render("index", {err: "User already exists"});
         }
 
         //if user does not exist
@@ -57,14 +59,15 @@ router.post('/signup3',async(req,res,next)=>{
         const hash = await bcrypt.hash(req.body.password, salt);
         req.body.password = hash;
             //create user with hashed password
-        const createdUser = await User.create({...req.session.userInfo,...req.body});
+        const createdUser = await User.create({...userInfo,...req.body});
+        console.log('created User',createdUser)
 
         //CREATE WAY FOR USER TO AUTO BE ADDED TO COMPANY AND CITY MESSAGE BOARD
         //if the message board for city doesn't exist make one
         //auto post message
 
-        //join company message board for when user joins in, create one if it doesn't exist
-        let newOldMessageBoard = await MessageBoard.find({})
+        
+        let newOldMessageBoard = (await MessageBoard.find({}))[0]
         if(!newOldMessageBoard){
             newOldMessageBoard = await MessageBoard.create({
                 name:'oldNew',
@@ -72,51 +75,49 @@ router.post('/signup3',async(req,res,next)=>{
                 users:[createdUser._id]
             })
         }else{
-            await MessageBoard.updateOne({_id:newOldMessageBoard._id},{$push: {users: createdUser._id}},done)
+            await MessageBoard.updateOne({_id:newOldMessageBoard._id},{$push: {users: createdUser._id}},{new:true})
         }
-        await User.updateOne({_id:createdUser._id},{$push: {messageBoards: newOldMessageBoard._id}},done)
+        console.log('newOld',newOldMessageBoard)
+        await User.updateOne({_id:createdUser._id},{$push: {messageBoards: newOldMessageBoard._id}},{new:true})
+        console.log('newOld done')
 
-        let companyMessageBoard = await MessageBoard.findOne({company:req.body.company})
+        //join company message board for when user joins in, create one if it doesn't exist
+        let companyMessageBoard = await MessageBoard.findOne({company:userInfo.company})
         if(!companyMessageBoard){
             companyMessageBoard = await MessageBoard.create({
-                name:req.body.company,
+                name:userInfo.company,
                 category:'company',
                 users:[createdUser._id]
             })
         }else{
-            await MessageBoard.updateOne({_id:companyMessageBoard._id},{$push: {users: createdUser._id}},done)
+            await MessageBoard.updateOne({_id:companyMessageBoard._id},{$push: {users: createdUser._id}},{new:true})
         }
-        await User.updateOne({_id:createdUser._id},{$push: {messageBoards: companyMessageBoard._id}},done)
+        console.log('Company Board',companyMessageBoard)
+        await User.updateOne({_id:createdUser._id},{$push: {messageBoards: companyMessageBoard._id}},{new:true})
+        console.log('company board done')
 
         //join city message board for when user joins in, create one if it doesn't exist
-        let cityMessageBoard = await MessageBoard.findOne({city:req.body.city})
+        let cityMessageBoard = await MessageBoard.findOne({city:userInfo.city})
         if(!cityMessageBoard){
             cityMessageBoard = await MessageBoard.create({
-                name:req.body.city,
+                name:userInfo.city,
                 category:'city',
                 users:[createdUser._id]
             })
         }else{
-            await MessageBoard.updateOne({_id:cityMessageBoard._id},{$push: {users: createdUser._id}},done)
+            await MessageBoard.updateOne({_id:cityMessageBoard._id},{$push: {users: createdUser._id}},{new:true})
         }
-        await User.updateOne({_id:createdUser._id},{$push: {messageBoards: cityMessageBoard._id}},done)
-
-        const matchedPassword = await bcrypt.compare(req.body.password,foundUser.password)
-        if(!matchedPassword){
-            //return res.redirect("/register")
-            return res.render("auth/login", {err: "invalid user info"});
-        }
+        console.log('City Board',cityMessageBoard)
+        await User.updateOne({_id:createdUser._id},{$push: {messageBoards: cityMessageBoard._id}},{new:true})
+        console.log('City Board done')
 
         req.session.currentUser = {
-            id: foundUser._id,
-            username: foundUser.username,
-            email: foundUser.email,
+            id: createdUser._id,
+            username: createdUser.username,
+            email: createdUser.email,
         }
 
-        //return to login
-        const newOldBoards = await MessageBoard.find({})
-
-        return res.redirect(`/boards/show/${newOldBoards[0]._id}`);
+        return res.redirect(`/boards/show/${newOldMessageBoard._id}`);
 
     }catch(error){
         console.log(error.message)
