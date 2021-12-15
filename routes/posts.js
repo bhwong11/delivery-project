@@ -4,15 +4,28 @@ const Board = require(`../models/MessageBoard`)
 const Post = require(`../models/Post`)
 
 ////new Post
-router.get(`/new`, (req,res) => {
-    res.render(`posts/new`, { post: new Post() })
+router.get(`/new`, async (req,res) => {
+    try {
+        const boards = await Board.find({})
+        const params = { 
+            boards: boards,
+            post: new Post()
+        }
+        res.render(`posts/new`, params)
+    } catch {
+        res.redirect(`/posts`)
+    }
 })
 ////create Post
 router.post(`/`, async (req,res) => {
+    console.log(`!! ATENTION !!`)
     console.log(req.body)
     const post = new Post({
         title: req.body.title,
-        content: req.body.content
+        content: req.body.content, 
+        date_created: new Date(req.body.date_created),
+        user: req.session.currentUser,
+        messageBoard: req.body.board
     })
     try {
         const newPost = await post.save()
@@ -32,3 +45,10 @@ router.get(`/:id/edit`, (req,res) => {
 
 
 module.exports = router
+
+
+/////New Book
+router.get(`/new`, async (req,res) => { 
+    renderNewPage(res, new Book())
+})
+
