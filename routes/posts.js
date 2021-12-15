@@ -2,6 +2,7 @@ const express = require(`express`)
 const router = express.Router()
 const Board = require(`../models/MessageBoard`)
 const Post = require(`../models/Post`)
+const User = require(`../models/User`)
 const imageMimeTypes = ['image/jpg', 'image/png']
 
 ////new Post
@@ -53,7 +54,7 @@ router.delete(`/:id`, async (req,res) => {
     try {
         post = await Post.findById(req.params.id)
         await post.remove()
-        res.redirect(`/boards/1`)
+        res.redirect(`/boards/${boardId}`)
     } catch {
         if (post != null) {
             res.render(`posts/show`, {
