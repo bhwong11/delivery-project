@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
-const {User,MessageBoard} = require('../models');
+const {User,MessageBoard,Post} = require('../models');
 let userInfo = null
 
 router.get('/',(req,res,next)=>{
@@ -67,7 +67,7 @@ router.post('/signup3',async(req,res,next)=>{
         //auto post message
 
         
-        let newOldMessageBoard = (await MessageBoard.find({}))[0]
+        let newOldMessageBoard = await MessageBoard.findOne({category:'newOld'})
         if(!newOldMessageBoard){
             newOldMessageBoard = await MessageBoard.create({
                 name:'oldNew',
@@ -80,6 +80,14 @@ router.post('/signup3',async(req,res,next)=>{
         console.log('newOld',newOldMessageBoard)
         await User.updateOne({_id:createdUser._id},{$push: {messageBoards: newOldMessageBoard._id}},{new:true})
         console.log('newOld done')
+
+        //create new post to the oldNew board
+        await Post.create({
+            title:`${createdUser.name} has joined the message board`,
+            content:'welcome them to the board!',
+            user:createdUser._id,
+            messageBoard:newOldMessageBoard._id,
+        })
 
         //join company message board for when user joins in, create one if it doesn't exist
         let companyMessageBoard = await MessageBoard.findOne({name:userInfo.company})
@@ -156,9 +164,8 @@ router.post('/signin', async(req,res,next)=>{
         }
 
         //find all boards and use id of the first one
-        const newOldBoards = await MessageBoard.find({})
-
-        return res.redirect(`/boards/${newOldBoards[0]._id}`);
+        const newOldBoards = await MessageBoard.findOne({category:'newOld'})
+        return res.redirect(`/boards/${newOldBoards._id}`);
 
     }catch(error){
         console.log(error.message);
