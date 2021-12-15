@@ -3,23 +3,18 @@ const router = express.Router()
 const {User,MessageBoard,Post} = require('../models');
 
 
-router.get(`/:id`, (req,res) => {
+router.get(`/:id`, async (req,res) => {
     try{
-        const foundUser = await User.findById(req.userId).populate('messageBoards').exec((err, messageBoards) => {
+        let context = null
+        const foundUser = await User.findById(req.params.id).populate('messageBoards').exec((err, messageBoards) => {
             console.log("Populated User " + messageBoards);
           })
         if(foundUser){
-            return res.status(200).json({
-                status:200,
-                message:'success',
-                user:foundUser,
-            })
+            context = foundUser
         }else{
-            return res.status(400).json({
-                status:400,
-                message:'No User with that id was found',
-            })
+            return res.redirect('/index',{err:'no found user with that ID'})
         }
+        //insert error hanlding if no found User here
     }catch(err){
         console.log(err)
         res.status(500).json({
@@ -27,62 +22,89 @@ router.get(`/:id`, (req,res) => {
             message:'internal server error'
         })
     }
-    res.render(`profile/show`)
+    res.render(`profile/show`,context)
 })
 
-router.get(`/:id/edit`, (req,res) => {
-    res.render(`profile/edit`)
-})
-
-
-module.exports = router
-
-
-
-const show = async(req,res)=>{
+router.get(`/:id/edit`,async(req,res)=>{
     try{
-        const foundUser = await User.findById(req.userId).populate('messageBoards').exec((err, messageBoards) => {
-            console.log("Populated User " + messageBoards);
-          })
-        if(foundUser){
-            return res.status(200).json({
-                status:200,
-                message:'success',
-                user:foundUser,
-            })
-        }else{
-            return res.status(400).json({
-                status:400,
-                message:'No User with that id was found',
-            })
-        }
+        const user = await User.findById(req.params.id);
+        return res.render(`profile/edit`,{user});
     }catch(err){
-        console.log(err)
-        res.status(500).json({
-            status:500,
-            message:'internal server error'
-        })
+        return res.redirect('/index',{err})
     }
-}
+})
 
-const update = async(req,res)=>{
+router.post(`/:id/edit`, async (req,res) => {
     try{
         
-        const unupdatedUser = await User.findById(req.userId);
-
+        const unupdatedUser = await User.findById(req.params.id);
+        //IF COMPANY OR CITY IS UPDATED UPDATE MESSAGE BOARD
         let newLocation = false;
         let newCompany = false;
 
-        if(req.body.location!==unupdatedUser.location){
+        if(req.body.location && req.body.location!==unupdatedUser.location){
             newLocation = true
         }
-        if(req.body.city!==unupdatedUser.city){
+        if(req.body.city && req.body.city!==unupdatedUser.city){
             newCompany = true
         }
 
         if(newLocation){
-            await MessageBoard.updateMany({users:{$in:[unupdatedUser._id]}})
+            //pull user out of old board
+            await MessageBoard.updateOne({$and:[
+                {users:{$in:[unupdatedUser._id]}},
+                {category:'company'}
+            ]},
+                { $pull: { users: { $elemMatch: { _id:unupdatedUser._id } } } },
+                { new: true })
+            
+            //pull board out of user
+            await User.updateOne({_id:unupdatedUser._id},
+                { $pull: { messageBoards: { $elemMatch: { category:'company' } } } },
+                { new: true })
+            
+            //create message board if not existing, push user if existing
+            let companyMessageBoard = await MessageBoard.findOne({company:req.body.company})
+            if(!companyMessageBoard){
+                companyMessageBoard = await MessageBoard.create({
+                    name:req.body.company,
+                    category:'company',
+                    users:[unupdatedUser._id]
+                })
+            }else{
+                await MessageBoard.updateOne({_id:companyMessageBoard._id},{$push: {users: unupdatedUser._id}},done)
+            }
+            await User.updateOne({_id:unupdatedUser._id},{$push: {messageBoards: companyMessageBoard._id}},done)
         }
+
+        if(newCity){
+            //pull user out of old board
+            await MessageBoard.updateOne({$and:[
+                {users:{$in:[unupdatedUser._id]}},
+                {category:'city'}
+            ]},
+                { $pull: { users: { $elemMatch: { _id:unupdatedUser._id } } } },
+                { new: true })
+            
+            //pull board out of user
+            await User.updateOne({_id:unupdatedUser._id},
+                { $pull: { messageBoards: { $elemMatch: { category:'city' } } } },
+                { new: true })
+            
+            //create message board if not existing, push user if existing
+            let companyMessageBoard = await MessageBoard.findOne({city:req.body.city})
+            if(!cityMessageBoard){
+                cityMessageBoard = await MessageBoard.create({
+                    name:req.body.city,
+                    category:'city',
+                    users:[unupdatedUser._id]
+                })
+            }else{
+                await MessageBoard.updateOne({_id:cityMessageBoard._id},{$push: {users: unupdatedUser._id}},done)
+            }
+            await User.updateOne({_id:unupdatedUser._id},{$push: {messageBoards: cityMessageBoard._id}},done)
+        }
+        
         
 
         const updateBody = {
@@ -96,47 +118,15 @@ const update = async(req,res)=>{
             console.log("Populated User " + messageBoards);
           })
         if(!updatedUser){
-            return res.status(400).json({
-                status:400,
-                message:'could not find user with that id',
-            })
+            return res.redirect('/index',{err:'updated user was no able to be found'})
         }
-        //IF COMPANY OR CITY IS UPDATED UPDATE MESSAGE BOARD
-        
 
-        return res.status(200).json({
-            status:200,
-            message:'success',
-            user:updatedUser,
-        })
+        res.redirect(`profile/${updatedUser._id}`)
     }catch(err){
         console.log(err)
-        return res.status(500).json({
-            status:500,
-            message:'internal server error'
-        })
+        return res.redirect('/index',{err})
     }
-}
+    
+})
 
-const destroy = async(req,res)=>{
-    try{
-        const deletedUser = await User.findByIdAndDelete(req.userId)
-        if(!deletedUser){
-            return res.status(400).json({
-                status:400,
-                message:'could not find user with that id',
-            })
-        }
-        return res.status(200).json({
-            status:200,
-            message:'success',
-            user:deletedUser,
-        })
-    }catch(err){
-        console.log(err)
-        res.status(500).json({
-            status:500,
-            message:'internal server error'
-        })
-    }
-}
+
