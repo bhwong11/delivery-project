@@ -2,7 +2,7 @@ const express = require(`express`)
 const router = express.Router()
 const Board = require(`../models/MessageBoard`)
 const Post = require(`../models/Post`)
-const User = require(`../models/User`)
+const imageMimeTypes = ['image/jpg', 'image/png']
 
 ////new Post
 router.get(`/new`, async (req,res) => {
@@ -25,8 +25,9 @@ router.post(`/`, async (req,res) => {
         content: req.body.content, 
         date_created: new Date(req.body.date_created),
         user: req.session.currentUser._id,
-        messageBoard: req.body.messageBoard
+        messageBoard: req.body.messageBoard,
     })
+    savePostImg(post, req.body.postImg)
     try {
         const newPost = await post.save()
         res.redirect(`/boards/${req.body.messageBoard}`)
@@ -39,6 +40,7 @@ router.post(`/`, async (req,res) => {
         })
     }
 })
+
 
 
 router.get(`/:id/edit`, (req,res) => {
@@ -64,5 +66,14 @@ router.delete(`/:id`, async (req,res) => {
         }
     }
 })
+
+function savePostImg(post, postImgEncoded){
+    if(postImgEncoded == null) return
+    const postImg = JSON.parse(postImgEncoded)
+    if (postImg != null && imageMimeTypes.includes(postImg.type)){
+        post.postImage = new Buffer.from(postImg.data, `base64`)
+        post.postImageType = postImg.type 
+    }
+}
 
 module.exports = router
