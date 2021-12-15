@@ -1,7 +1,7 @@
 * {
   /* border: red 1px solid; */
   box-sizing: border-box;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
   font-family: 'Roboto', sans-serif;
   margin: 0;
   padding: 0;
@@ -13,35 +13,35 @@ body {
   border: slategrey 1px solid;
 }
 
-a{
-    font-style: none;
-    text-decoration: none;
-    color: black;
-    font-family: 'Roboto', sans-serif;
+a {
+  font-style: none;
+  text-decoration: none;
+  color: black;
+  font-family: 'Roboto', sans-serif;
 }
-a:hover{
-    color: lightgrey;
+a:hover {
+  color: lightgrey;
 }
 
-button{
+button {
   border: none;
 }
-button:hover{
+button:hover {
   cursor: pointer;
 }
 /* ==========NAV=============== */
-.primary-nav{
-    padding: 12px;
-    background-color: royalblue;
-    width: 400px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: sticky;
-    bottom: 0;
+.primary-nav {
+  padding: 12px;
+  background-color: royalblue;
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
 }
 
-.nav-piece{
+.nav-piece {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -49,18 +49,18 @@ button:hover{
   font-size: 11px;
   color: lightgrey;
 }
-.nav-piece i{
+.nav-piece i {
   font-size: 24px;
   margin-bottom: 5px;
 }
 
-.nav-piece:hover{
+.nav-piece:hover {
   color: white;
 }
 
 /* ============================ */
 /* ==========Index============= */
-.index-body{
+.index-body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -84,14 +84,14 @@ button:hover{
   margin-bottom: 100px;
 }
 /* ================================ */
-.signup-body{
+.signup-body {
   padding-top: 70px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   align-items: center;
 }
-.signup-body h2{
+.signup-body h2 {
   font-weight: bold;
   font-size: 30px;
 }
@@ -105,7 +105,7 @@ button:hover{
   padding: 0 10%;
   font-weight: bold;
 }
-.signup-container label{
+.signup-container label {
   align-self: flex-start;
 }
 
@@ -178,11 +178,12 @@ button:hover{
   margin: 5px 0 30px 0;
   border-radius: 5px;
 }
-.signup-input:focus{
-    outline: none;
+.signup-input:focus {
+  outline: none;
 }
 
-.signup-button, .signin-button {
+.signup-button,
+.signin-button {
   padding: 10px;
   margin: 5px 0;
   border-radius: 5px;
@@ -192,10 +193,10 @@ button:hover{
   width: 75%;
   border-radius: 8px;
 }
-.signup-button{
+.signup-button {
   background-color: lightblue;
 }
-.signin-button{
+.signin-button {
   background-color: royalblue;
 }
 
@@ -218,28 +219,28 @@ button:hover{
 }
 /* ================================ */
 /* ==========BOARDS================ */
-.board-body{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+.board-body {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
 }
-.board-body h3{
-    margin: 20px 0 -5px 10px;
-    font-size: 12px;
-    color: white;
+.board-body h3 {
+  margin: 20px 0 -5px 10px;
+  font-size: 12px;
+  color: white;
 }
-.board-body a{
+.board-body a {
   color: white;
 }
 
-.board-nav{
-    width: 20%;
-    background-color: darkblue;
-    color: white;
+.board-nav {
+  width: 20%;
+  background-color: darkblue;
+  color: white;
 }
 
-.new-board{
+.new-board {
   border: 1px dashed white;
   display: flex;
   justify-content: center;
@@ -249,109 +250,111 @@ button:hover{
   width: 60px;
   border-radius: 10px;
 }
-.new-board:hover{
+.new-board:hover {
   border: 1px dashed lightgray;
   color: lightgray;
 }
 
-.single-board{
-    display: flex;
-    flex-direction: column;
-    padding: 10px;
+.single-board {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
 }
-.single-board img{
-    border-radius: 10px;
+.single-board img {
+  border-radius: 10px;
 }
 /* ----------- */
-.post-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
+.post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
 }
-.post-container h2{
-    width: 100%;
-    background-color: royalblue;
-    color: white;
-    padding: 20px 0 20px 10%;
-    margin-bottom: 20px;
+.post-container h2 {
+  width: 100%;
+  background-color: royalblue;
+  color: white;
+  padding: 20px 0 20px 10%;
+  margin-bottom: 20px;
 }
 .post-container p {
-    align-self: flex-start;
-    padding: 0 0 0 10%;
-    font-weight: bold;
-    margin-bottom: 5px;
+  align-self: flex-start;
+  padding: 0 0 0 10%;
+  font-weight: bold;
+  margin-bottom: 5px;
 }
 
-.create-post{
-    align-self: flex-start;
-    margin-left: 10%;
-    background-color: royalblue;
-    padding: 5px 10px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+.create-post {
+  align-self: flex-start;
+  margin-left: 10%;
+  background-color: royalblue;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
-.single-post{
-    width: 80%;
-    background-color: lightgrey;
-    border-radius: 10px;
-    padding: 10px;
-    display: flex;
-    margin-bottom: 15px;
+.single-post {
+  width: 80%;
+  background-color: lightgrey;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  margin-bottom: 15px;
 }
-.single-post img{
-    margin-right: 10px;
-    border-radius: 10px;
+.single-post img {
+  margin-right: 10px;
+  border-radius: 10px;
 }
 
-.button-row{
-    display: flex;
+.button-row {
+  display: flex;
 }
 /* ================================ */
 /* ===========NEW POST============= */
-.new-post-title{
+.new-post-title {
   width: 100%;
   background-color: royalblue;
   color: white;
   padding: 2% 5%;
 }
 
-.new-post-container{
-    display: flex;
-    flex-direction: column;
-    padding: 5%;
-    background-color: lightblue;
+.new-post-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  background-color: lightblue;
 }
 
-.new-post-container label{
+.new-post-container label {
   font-weight: bold;
   margin-bottom: 4px;
 }
 
-.new-post-container input, .new-post-container textarea{
-    background-color: white;
-    padding: 10px 5px 5px 5px;
-    border: none;
-    border-radius: 5px;
-    font-size: 18px;
-    margin-bottom: 10px;
+.new-post-container input,
+.new-post-container textarea {
+  background-color: white;
+  padding: 10px 5px 5px 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 18px;
+  margin-bottom: 10px;
 }
 
-.new-post-container input:focus, .new-post-container textarea{
-    outline: none;
+.new-post-container input:focus,
+.new-post-container textarea {
+  outline: none;
 }
 
-.new-post-container textarea{
-    height: 50vh;
+.new-post-container textarea {
+  height: 50vh;
 }
 
-.large-input{
-    height: 50vh;
+.large-input {
+  height: 50vh;
 }
 /* ================================ */
 /* =========MEDITATION============= */
-.meditation-body{
+.meditation-body {
   display: flex;
   flex-direction: column;
   width: 100%;
@@ -359,7 +362,67 @@ button:hover{
   justify-content: center;
 }
 
-.meditation-body img{
+.meditation-body img {
   width: 50%;
+}
+/* ================================ */
+
+/* =========Breathing============= */
+.breathe-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: rgb(125, 183, 196);
+}
+
+.heart {
+  background: rgb(255, 255, 255);
+  position: relative;
+  height: 100px;
+  width: 100px;
+  /* Animation */
+  transform: rotate(-45deg) scale(1);
+  animation: pulse 5s linear infinite;
+}
+
+.heart::after {
+  /* background:blue; */
+  background: inherit;
+  border-radius: 50%; /* To make circle */
+  content: '';
+  position: absolute;
+  /* top: -100px;*/
+  top: -50%; /* Inherit properties of parent */
+  /* left: -100px; */
+  left: 0;
+  height: 100px;
+  width: 100px;
+}
+.heart::before {
+  background: inherit;
+  border-radius: 50%; /* To make circle */
+  content: '';
+  position: absolute;
+  top: 0;
+  right: -50%; /* Inherit properties of parent */
+  height: 100px;
+  width: 100px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: rotate(-45deg) scale(0.5);
+    opacity: 0.5;
+  }
+  50% {
+    transform: rotate(-45deg) scale(1.3);
+    opacity: 1;
+  }
+  100% {
+    transform: rotate(-45deg) scale(0.5);
+    opacity: 0.5;
+  }
 }
 /* ================================ */
