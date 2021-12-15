@@ -11,13 +11,13 @@
                 <a href="/boards/<%= board.id %>">Edit Board</a>
             </div>
         <% }) %>
-        <a href="/boards/new">New Board</a> 
+        <a href="/boards/new"><div class="new-board">+</div></a> 
     </div>
     
     <div class="post-container">
-        <h2><%= board.name %></h2>
+        <h2>General</h2>
         <p>Recent Posts</p>
-        <a href="/posts/new" class="create-post">Create a Post</a> 
+        <a href="/posts/new" class="create-post"><i class="fas fa-comment-dots"></i> Create a Post</a> 
         <!-- <i class="fas fa-filter"></i> -->
         <% posts.forEach(post => { %>
             <div class="single-post">
@@ -37,5 +37,3 @@
     </div>
 </div>
 <%- include(`../partials/nav`) %>
-
-

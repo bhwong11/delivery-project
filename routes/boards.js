@@ -3,6 +3,22 @@ const router = express.Router()
 const Board = require(`../models/MessageBoard`)
 const Post = require(`../models/Post`)
 
+////Board index
+router.get(`/`, async (req,res) => {
+    let boards
+    let posts
+    try {
+        boards = await Board.find()
+        posts = await Post.find({})
+    } catch(err) {
+        console.log(err)
+    }
+    res.render(`boards/index`, {
+        boards: boards, 
+        posts: posts
+    })
+})
+
 /////New Board
 router.get(`/new`, (req,res) => {
     res.render(`boards/new`, { board: new Board() })
@@ -29,26 +45,20 @@ router.post(`/`, async (req,res) => {
 router.get(`/:id`, async (req,res) => {
     let boards
     let posts
+    let board
     try {
         boards = await Board.find()
-        posts = await Post.find()
-        const board = await Board.findById(req.params.id)
+        board = await Board.findById(req.params.id)
         posts = await Post.find({ messageBoard: board.id })
-        console.log(board.id)
     } catch(err) {
         console.log(err)
     }
     res.render(`boards/show`, {
         boards: boards, 
-        posts: posts
+        posts: posts,
+        board: board
     })
 })
-
-// <% postsOnBoard.forEach(post => { %>
-//     <%= post.title %>
-//     <%= post.content %>
-// <% }) %>
-
 
 ////edit board
 router.get(`/:id/edit`, async (req,res) => {
