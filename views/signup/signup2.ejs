@@ -1,7 +1,13 @@
-sign up 2
-<form method="POST" action="/signup2">
-    <label for="city">City</label>
-    <select id="city" name="city">
+<h1 class="signup-header">Sign Up</h2>
+
+<div class="progress-container">
+  <div class="progress-two"></div>
+  <img class="truck2" src="/images/truck.png" alt="">
+</div>
+
+<form class="signup-container" method="POST" action="/signup2">
+    <label for="city">What city do you live in?</label>
+    <select class="signup-dropdown" id="city" name="city">
         <option value="Minneapolis">Minneapolis, MN</option>
         <option value="St.Louis">St.Louis ,MI</option>
         <option value="New York">New York ,NY</option>
@@ -12,14 +18,14 @@ sign up 2
         <option value="Las Vegas">Las Vegas, NV</option>
     </select>
 
-    <label for="company">Company</label>
-    <select id="company" name="company">
+    <label for="company">What company do you work for?</label>
+    <select class="signup-dropdown" id="company" name="company">
         <option value="amazon">Amazon</option>
         <option value="fedex">Fedex</option>
         <option value="uber">Uber</option>
         <option value="ups">Ups</option>
     </select>
 
-    <button>continue</button>
+    <button class="signup-button">Continue</button>
 
 </form>

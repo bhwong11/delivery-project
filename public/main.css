@@ -1,5 +1,8 @@
 * {
   /* border: red 1px solid; */
+  box-sizing: border-box;
+  transition: all .2s ease-in-out;
+  font-family: 'Roboto', sans-serif;
 }
 
 body {
@@ -8,13 +11,33 @@ body {
   border: slategrey 1px solid;
 }
 
+a{
+    font-style: none;
+    text-decoration: none;
+    color: black;
+    font-family: 'Roboto', sans-serif;
+}
+a:hover{
+    color: lightgrey;
+}
+/* ==========NAV=============== */
+.primary-nav{
+    height: 50px;
+    border: 1px solid grey;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+/* ============================ */
+/* ==========Index============= */
 .logo-container {
   display: flex;
   justify-content: center;
 }
 
 .logo {
-  width: 50%;
+  width: 70%;
 }
 
 h1 {
@@ -32,12 +55,204 @@ h1 {
 .sign-button {
   font-family: 'Roboto', sans-serif;
   font-size: large;
+  font-weight: bold;
   width: 75%;
   margin: 5px 0;
   padding: 10px;
   border-radius: 10px;
 }
-
 .sign-button:hover {
   background-color: rgb(142, 142, 142);
 }
+/* ================================ */
+
+.signup-container {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signup-header {
+  text-align: center;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  margin-bottom: 15px;
+}
+
+.truck {
+  width: 40px;
+  position: absolute;
+  z-index: 2;
+  left: 4%;
+}
+.truck2 {
+  width: 40px;
+  position: absolute;
+  z-index: 2;
+  left: 49%;
+}
+.truck3 {
+  width: 40px;
+  position: absolute;
+  z-index: 2;
+  left: 84%;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: rgb(238, 238, 238);
+  width: 76%;
+  margin-left: 12%;
+  margin-right: 12%;
+  margin-bottom: 20px;
+  border-radius: 10px;
+}
+
+.progress-one {
+  height: 15px;
+  width: 6%;
+  background-color: rgb(22, 216, 42);
+  border-radius: 10px;
+  z-index: 1;
+}
+
+.progress-two {
+  height: 15px;
+  width: 51%;
+  background-color: rgb(22, 216, 42);
+  border-radius: 10px;
+}
+
+.progress-three {
+  height: 15px;
+  width: 86%;
+  background-color: rgb(22, 216, 42);
+  border-radius: 10px;
+}
+
+.signup-input {
+  background-color: rgb(220, 220, 220);
+  border: none;
+  height: 25px;
+  width: 75%;
+  padding: 0px 5px;
+  margin: 5px 0 20px 0;
+  border-radius: 5px;
+}
+
+.signup-input:focus{
+    outline: none;
+}
+
+.signup-button {
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+}
+/* ==========Signup1============= */
+
+.signform-label {
+  /* justify-content: left; */
+}
+
+/* ================================ */
+
+/* ==========Signup2============= */
+.signup-dropdown {
+  background-color: rgb(220, 220, 220);
+  border: none;
+  height: 25px;
+  width: 77.5%;
+  margin: 5px 0 20px 0;
+  border-radius: 5px;
+}
+/* ================================ */
+/* ==========BOARDS================ */
+.board-body{
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+.board-body h3{
+    text-align: center;
+    font-size: 16px;
+}
+
+.board-nav{
+    width: 20%;
+    background-color: lightgrey;
+}
+
+.single-board{
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+.single-board img{
+    border-radius: 15px;
+}
+/* ----------- */
+.post-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
+}
+
+.create-post{
+    align-self: flex-start;
+    margin-left: 10%;
+    background-color: lightgrey;
+    padding: 5px 10px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.single-post{
+    width: 80%;
+    background-color: lightgrey;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    margin-bottom: 15px;
+}
+.single-post img{
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.button-row{
+    display: flex;
+}
+/* ================================ */
+/* ===========NEW POST============= */
+.new-post-container{
+    display: flex;
+    flex-direction: column;
+    padding: 5%;
+}
+
+.new-post-container input, .new-post-container textarea{
+    background-color: lightgrey;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.new-post-container input:focus, .new-post-container textarea{
+    outline: none;
+}
+
+.new-post-container textarea{
+    height: 50vh;
+}
+
+.large-input{
+    height: 50vh;
+}
+/* ================================ */

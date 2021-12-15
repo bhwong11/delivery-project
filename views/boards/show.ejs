@@ -1,40 +1,39 @@
-show board
-<br>
-and show post index
-<br>
-<a href="/boards/new">New Board</a>
-
-<br>
-<a href="/posts/new">New Post</a>
-<a href="/posts/1/edit">Edit Post</a>
-<br>
-
-<!-- This is the index of posts related to this board -->
-<h2>ALL POSTS</h2>
-<div>
-    <% posts.forEach(post => { %>
-        <div><%= post.title %></div>
-        <div><%= post.content %></div>
-        <%console.log('POST MESSAGE BOARD',post.messageBoard)%>
-        <form method="POST" action="<%= `/posts/${post.id}` %>?_method=DELETE">
-            <button type="submit">Delete</button>
-        </form>
-    <% }) %>
+<div class="board-body">
+    <div class="board-nav">
+        <h3>Channels</h3>
+        <% boards.forEach(board => { %>
+            <div class="single-board">
+                <img src="https://picsum.photos/50/50">
+                <a href="/boards/<%= board.id %>"><%= board.name %></a>
+                <form method="POST" action="<%= `/boards/${board.id}` %>?_method=DELETE">
+                    <button type="submit">Delete</button>
+                </form>
+                <a href="/boards/<%= board.id %>">Edit Board</a>
+            </div>
+        <% }) %>
+        <a href="/boards/new">New Board</a>
+    </div>
+    
+    <div class="post-container">
+        <h2>Posts</h2>
+        <a href="/posts/new" class="create-post">Create a Post</a>
+        <% posts.forEach(post => { %>
+            <div class="single-post">
+                <img src="https://picsum.photos/50/50">
+                <div class="post-words">
+                    <div><%= post.title %></div>
+                    <div><%= post.content %></div>
+                    <div class="button-row">
+                        <form method="POST" action="<%= `/posts/${post.id}` %>?_method=DELETE">
+                            <button type="submit">Delete</button>
+                        </form>
+                        <a href="/posts/<%= post.id %>">Edit Post</a>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+    </div>
 </div>
-
-
-<!-- This is the index of boards visible from each board -->
-<h2>ALL Boards</h2>
-<div>
-    <% boards.forEach(board => { %>
-        <div>
-            <a href="/boards/<%= board.id %>"><%= board.name %></a>
-            <form method="POST" action="<%= `/boards/${board.id}` %>?_method=DELETE">
-                <button type="submit">Delete</button>
-            </form>
-            <a href="/boards/<%= board.id %>">Edit Board</a>
-        </div>
-    <% }) %>
-</div>
-
 <%- include(`../partials/nav`) %>
+
+

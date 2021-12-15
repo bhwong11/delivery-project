@@ -18,8 +18,6 @@ router.get(`/new`, async (req,res) => {
 })
 ////create Post
 router.post(`/`, async (req,res) => {
-    console.log(`!! ATENTION !!`)
-    console.log(req.body)
     const post = new Post({
         title: req.body.title,
         content: req.body.content, 
@@ -29,13 +27,13 @@ router.post(`/`, async (req,res) => {
     })
     try {
         const newPost = await post.save()
-        return res.redirect(`/boards/${req.body.messageBoard}`)
+        res.redirect(`/boards/${req.body.messageBoard}`)
     } catch (err) {
         console.log(err)
         console.log('req.body.board',req.body.messageBoard)
         res.render(`posts/new`, {
             post: post,
-            boards:[req.body.messageBoard],
+            boards: [req.body.messageBoard]
         })
     }
 })
@@ -45,12 +43,24 @@ router.get(`/:id/edit`, (req,res) => {
     res.render(`posts/edit`)
 })
 
-
-module.exports = router
-
-
-/////New Book
-router.get(`/new`, async (req,res) => { 
-    renderNewPage(res, new Book())
+//delete post
+router.delete(`/:id`, async (req,res) => {
+    let post 
+    try {
+        post = await Post.findById(req.params.id)
+        await post.remove()
+        res.redirect(`/boards/1`)
+    } catch {
+        if (post != null) {
+            res.render(`posts/show`, {
+                post: post, 
+                errorMessage: `Could not remove post`
+            })
+        } else {
+            console.log(`THIS IS HITTING THE ERROR!!!`)
+            res.redirect(`/boards/1`)
+        }
+    }
 })
 
+module.exports = router
