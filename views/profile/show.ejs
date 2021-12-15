@@ -1,7 +1,5 @@
-profile page
-<br>
-<a href="/profile/<%=user._id%>/edit">Edit</a>
-<br>
+<div class="profile-body">
+    <a href="/profile/<%=user._id%>/edit">Edit</a>
     <div>
         Username: <%=user.name%>
     </div>
@@ -14,4 +12,6 @@ profile page
     <div>
         Email:<%=user.email%>
     </div>
+</div>
+
 <%- include(`../partials/nav`) %>
