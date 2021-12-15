@@ -9,7 +9,7 @@ router.get(`/spotify`, (req, res) => {
   res.render(`meditation/spotify`);
 });
 
-router.get(`/breathing`, (req, res) => {
+router.get(`/breathe`, (req, res) => {
   res.render(`meditation/breathing`);
 });
 
