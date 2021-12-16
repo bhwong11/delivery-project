@@ -5,10 +5,6 @@
             <div class="single-board">
                 <img src="https://picsum.photos/50/50">
                 <a href="/boards/<%= board.id %>"><%= board.name %></a>
-                <form method="POST" action="<%= `/boards/${board.id}` %>?_method=DELETE">
-                    <button type="submit">Delete</button>
-                </form>
-                <a href="/boards/<%= board.id %>">Edit Board</a>
             </div>
         <% }) %>
         <a href="/boards/new"><div class="new-board">+</div></a>
@@ -17,20 +13,16 @@
     <div class="post-container">
         <h2><%= board.name %></h2>
         <p>Recent Posts</p>
-        <a href="/posts/new" class="create-post"><i class="fas fa-comment-dots"></i> Create a Post</a> 
-        <!-- <i class="fas fa-filter"></i> -->
+        <div class=new-post-row>
+            <a href="/posts/new" class="create-post"><i class="fas fa-comment-dots"></i> Create a Post</a> 
+            <i class="fas fa-filter"></i>
+        </div>
         <% posts.forEach(post => { %>
             <div class="single-post">
                 <img src="<%= post.postImagePath %>" height=50 width=50>
                 <div class="post-words">
                     <div><%= post.title %></div>
                     <div><%= post.content %></div>
-                    <div class="button-row">
-                        <form method="POST" action="<%= `/posts/${post.id}` %>?_method=DELETE">
-                            <button type="submit">Delete</button>
-                        </form>
-                        <a href="/posts/<%= post.id %>">Edit Post</a>
-                    </div>
                 </div>
             </div>
         <% }) %>

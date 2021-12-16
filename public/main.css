@@ -59,10 +59,21 @@ button:hover {
 /* ============================ */
 /* ==========Index============= */
 .index-body {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  background-image: url('./images/road.jpg');
+  background-size: cover;
+  background-position: right;
+}
+
+.screen{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
 }
 
 .logo-container {
@@ -73,6 +84,7 @@ button:hover {
 
 .logo {
   width: 70%;
+  z-index: 1;
 }
 
 .button-container {
@@ -80,6 +92,7 @@ button:hover {
   align-items: center;
   flex-direction: column;
   margin-bottom: 100px;
+  z-index: 1;
 }
 /* ================================ */
 .signup-body {
@@ -278,6 +291,13 @@ button:hover {
 .single-board img {
   border-radius: 10px;
 }
+.single-board a{
+  font-size: 10px;
+  color: #B5D3FF;
+}
+.single-board a:hover{
+  color:white;
+}
 /* ----------- */
 .post-container {
   display: flex;
@@ -328,9 +348,20 @@ button:hover {
 /* ===========NEW POST============= */
 .new-post-title {
   width: 100%;
-  background-color: #407bff;
+  display: flex;
+  justify-content: space-between;
+  background-color: #407BFF;
+
   color: white;
   padding: 2% 5%;
+}
+.new-post-title button{
+  background: none;
+  color: white;
+}
+.new-post-title i {
+  color: white;
+  padding-top: 6px;
 }
 
 .new-post-container {
@@ -340,6 +371,21 @@ button:hover {
   background-color: #dbe6ff;
 }
 
+.post-main-content{
+  background-color: lightgrey;
+  border-radius: 10px;
+}
+
+.new-post-row{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding-right: 10%;
+}
+.new-post-row i{
+  font-size: 20px;
+}
+
 .new-post-container label {
   font-weight: bold;
   margin-bottom: 4px;
@@ -347,7 +393,7 @@ button:hover {
 
 .new-post-container input,
 .new-post-container textarea {
-  background-color: white;
+  background-color: lightgrey;
   padding: 10px 5px 5px 5px;
   border: none;
   border-radius: 5px;
@@ -362,6 +408,7 @@ button:hover {
 
 .new-post-container textarea {
   height: 50vh;
+  width: 100%;
 }
 
 .large-input {
@@ -426,7 +473,47 @@ button:hover {
 }
 /* ================================ */
 /* ===========PROFILE============== */
-.profile
+.profile-body{
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  height: 100%;
+}
+.profile-body img{
+  width: 25%;
+  border-radius: 50%;
+  justify-self: center;
+  align-self: center;
+}
+.profile-body a{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.profile-row{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.profile-row i{
+  font-size: 30px;
+}
+.profile-row i:hover{
+  cursor:pointer;
+}
+
+.username{
+  text-align: center;
+  margin: 10px 0 10px 0;
+}
+
+.user-info{
+  padding: 10px;
+  font-size: 20px;
+  font-weight: bold;
+  border-bottom: 4px solid #83B5FF;
+  margin-bottom: 20px;
+}
 /* ================================ */
 iframe {
   height: 100%;
@@ -435,13 +522,23 @@ iframe {
 /* =========Breathing============= */
 .breathe-container {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
   margin: 0;
-  background-color: rgb(125, 183, 196);
-  /* background-image: url('/public/images/mountain.jpg'); */
+  background-size: 350%;
+  background-position: top;
+  background-image: url('/images/mountain.jpg');
+}
+
+.heart-screen{
+  position: absolute;
+  background: linear-gradient(white, rgba(90, 165, 226, 0.7), rgba(90, 165, 226, 0.4));
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .heart {
@@ -449,10 +546,11 @@ iframe {
   position: relative;
   height: 100px;
   width: 100px;
-  top: -200px;
+  top: -100px;
   /* Animation */
   transform: rotate(-45deg) scale(1);
   animation: pulse 7s linear infinite;
+  z-index: 1;
 }
 
 .heart::after {

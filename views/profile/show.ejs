@@ -1,16 +1,21 @@
 <div class="profile-body">
-    <a href="/profile/<%=user._id%>/edit">Edit</a>
-    <div>
-        Username: <%=user.name%>
+    <div class="profile-row">
+        <h2>My Profile</h2>
+        <i class="fas fa-cog"></i>
     </div>
-    <div>
+    <img src="https://picsum.photos/100/100">
+    <div class="username">
+        <%=user.name%>
+    </div>
+    <a href="/profile/<%=user._id%>/edit">Edit</a>
+    <div class="user-info">
         Location: <%=user.city%>
     </div>
-    <div>
-        Company:<%=user.company%>
+    <div class="user-info">
+        Company: <%=user.company%>
     </div>
-    <div>
-        Email:<%=user.email%>
+    <div class="user-info">
+        Email: <%=user.email%>
     </div>
 </div>
 
