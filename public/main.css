@@ -28,18 +28,18 @@ button:hover {
   cursor: pointer;
 }
 /* ==========NAV=============== */
-.primary-nav{
-    padding: 12px;
-    background-color: #407BFF;
-    width: 400px;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    position: sticky;
-    bottom: 0;
+.primary-nav {
+  padding: 12px;
+  background-color: #407bff;
+  width: 400px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: sticky;
+  bottom: 0;
 }
 
-.nav-piece{
+.nav-piece {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,8 +52,8 @@ button:hover {
   margin-bottom: 5px;
 }
 
-.nav-piece:hover{
-  color: #B5D3FF;
+.nav-piece:hover {
+  color: #b5d3ff;
 }
 
 /* ============================ */
@@ -204,25 +204,26 @@ button:hover {
   width: 75%;
   border-radius: 8px;
 }
-  
-.signin-button{
-  background-color: #83B5FF;
-  border: 1px solid rgba(0,0,0,0);
+
+.signin-button {
+  background-color: #83b5ff;
+  border: 1px solid rgba(0, 0, 0, 0);
 }
-.signin-button:hover{
+.signin-button:hover {
   background-color: #aeceff;
-  border: 1px solid #83B5FF;
+  border: 1px solid #83b5ff;
 }
-.signup-button{
-  background-color: #407BFF;
-  border: 1px solid rgba(0,0,0,0);
+.signup-button {
+  background-color: #407bff;
+  border: 1px solid rgba(0, 0, 0, 0);
   color: white;
 }
-.signup-button:hover{
+.signup-button:hover {
   background-color: #75a1ff;
-  border: 1px solid #407BFF;
+  border: 1px solid #407bff;
 }
-.signup-button a, .signin-button a{
+.signup-button a,
+.signin-button a {
   color: white;
 }
 /* HOVER LIGHTEN, with stroke */
@@ -261,10 +262,10 @@ button:hover {
   color: white;
 }
 
-.board-nav{
-    width: 20%;
-    background-color: #043257;
-    color: white;
+.board-nav {
+  width: 20%;
+  background-color: #043257;
+  color: white;
 }
 
 .new-board {
@@ -298,18 +299,18 @@ button:hover {
   color:white;
 }
 /* ----------- */
-.post-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 80%;
+.post-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
 }
-.post-container h2{
-    width: 100%;
-    background-color: #407BFF;
-    color: white;
-    padding: 20px 0 20px 10%;
-    margin-bottom: 20px;
+.post-container h2 {
+  width: 100%;
+  background-color: #407bff;
+  color: white;
+  padding: 20px 0 20px 10%;
+  margin-bottom: 20px;
 }
 .post-container p {
   align-self: flex-start;
@@ -318,13 +319,13 @@ button:hover {
   margin-bottom: 5px;
 }
 
-.create-post{
-    align-self: flex-start;
-    margin-left: 10%;
-    background-color: #407BFF;
-    padding: 5px 10px;
-    border-radius: 8px;
-    margin-bottom: 10px;
+.create-post {
+  align-self: flex-start;
+  margin-left: 10%;
+  background-color: #407bff;
+  padding: 5px 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
 }
 
 .single-post {
@@ -350,6 +351,7 @@ button:hover {
   display: flex;
   justify-content: space-between;
   background-color: #407BFF;
+
   color: white;
   padding: 2% 5%;
 }
@@ -362,11 +364,11 @@ button:hover {
   padding-top: 6px;
 }
 
-.new-post-container{
-    display: flex;
-    flex-direction: column;
-    padding: 5%;
-    background-color: #DBE6FF;
+.new-post-container {
+  display: flex;
+  flex-direction: column;
+  padding: 5%;
+  background-color: #dbe6ff;
 }
 
 .post-main-content{
@@ -422,8 +424,7 @@ button:hover {
   height: 100%;
   align-items: center;
   padding: 7%;
-  background: linear-gradient(#CAC1FF,#8EFEF9, #8EFEF9, #8EFEF9);
-
+  background: linear-gradient(#cac1ff, #8efef9, #8efef9, #8efef9);
 }
 
 .meditation-body h3 {
@@ -439,9 +440,9 @@ button:hover {
   width: 40%;
 }
 
-.feelings-container{
+.feelings-container {
   font-size: 20px;
-  background: linear-gradient(#CAC1FF, #83B5FF);
+  background: linear-gradient(#cac1ff, #83b5ff);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -514,7 +515,7 @@ button:hover {
   margin-bottom: 20px;
 }
 /* ================================ */
-iframe{
+iframe {
   height: 100%;
 }
 

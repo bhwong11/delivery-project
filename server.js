@@ -2,6 +2,7 @@ if (process.env.NODE_ENV !== `production`) {
   require(`dotenv`).config();
 }
 
+
 const express = require(`express`);
 const app = express();
 const expressLayouts = require(`express-ejs-layouts`);
@@ -27,7 +28,7 @@ app.use(express.urlencoded({ limit: `10mb`, extended: false }))
 app.use(
   session({
     store: MongoStore.create({
-      mongoUrl: process.env.MONGO_URI || 'mongodb://localhost:27017/hackathon',
+      mongoUrl: process.env.DATABASE_URL || 'mongodb://localhost:27017/hackathon',
     }),
     secret: 'secretThatWillGoInENVWhenNotLazy',
     resave: false,
@@ -38,13 +39,29 @@ app.use(
   })
 );
 
-//pull 
+//auth reuqired middleware
+const authRequired = function (req, res, next) {
+  if(req.session.currentUser){
+    return next();
+  }
+  return res.redirect("/");
+}
+
+//pull message board info
 const {MessageBoard} = require('./models')
 app.use(async function (req, res, next) {
   res.locals.user = req.session.currentUser;
   res.locals.boards = await MessageBoard.find({})
   next();
 });
+
+//auth required
+const authRequired = function (req, res, next) {
+  if(req.session.currentUser){
+    return next();
+  }
+  return res.redirect("/");
+}
 
 const mongoose = require(`mongoose`);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
@@ -53,9 +70,9 @@ db.on(`error`, (error) => console.error(error));
 db.once(`open`, () => console.log(`Connection Established`));
 
 app.use(`/`, authRouter);
-app.use(`/profile`, profileRouter);
-app.use(`/posts`, postsRouter);
-app.use(`/boards`, boardsRouter);
-app.use(`/meditation`, meditationRouter);
+app.use(`/profile`,authRequired, profileRouter);
+app.use(`/posts`,authRequired, postsRouter);
+app.use(`/boards`,authRequired, boardsRouter);
+app.use(`/meditation`,authRequired, meditationRouter);
 
 app.listen(process.env.PORT || 3000);
