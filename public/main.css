@@ -59,10 +59,21 @@ button:hover {
 /* ============================ */
 /* ==========Index============= */
 .index-body {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  background-image: url('./images/road.jpg');
+  background-size: cover;
+  background-position: right;
+}
+
+.screen{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
 }
 
 .logo-container {
@@ -73,6 +84,7 @@ button:hover {
 
 .logo {
   width: 70%;
+  z-index: 1;
 }
 
 .button-container {
@@ -80,6 +92,7 @@ button:hover {
   align-items: center;
   flex-direction: column;
   margin-bottom: 100px;
+  z-index: 1;
 }
 /* ================================ */
 .signup-body {
@@ -476,6 +489,18 @@ button:hover {
   margin-bottom: 20px;
 }
 
+.profile-row{
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.profile-row i{
+  font-size: 30px;
+}
+.profile-row i:hover{
+  cursor:pointer;
+}
+
 .username{
   text-align: center;
   margin: 10px 0 10px 0;
@@ -496,13 +521,23 @@ iframe{
 /* =========Breathing============= */
 .breathe-container {
   display: flex;
+  position: relative;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
   margin: 0;
-  background-color: rgb(125, 183, 196);
-  /* background-image: url('/public/images/mountain.jpg'); */
+  background-size: 350%;
+  background-position: top;
+  background-image: url('/images/mountain.jpg');
+}
+
+.heart-screen{
+  position: absolute;
+  background: linear-gradient(white, rgba(90, 165, 226, 0.7), rgba(90, 165, 226, 0.4));
+  width: 100%;
+  height: 100%;
+  z-index: 0;
 }
 
 .heart {
@@ -510,10 +545,11 @@ iframe{
   position: relative;
   height: 100px;
   width: 100px;
-  top: -200px;
+  top: -100px;
   /* Animation */
   transform: rotate(-45deg) scale(1);
   animation: pulse 7s linear infinite;
+  z-index: 1;
 }
 
 .heart::after {
