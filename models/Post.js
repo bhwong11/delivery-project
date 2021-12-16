@@ -33,6 +33,8 @@ const PostSchema = new mongoose.Schema({
 PostSchema.virtual(`postImagePath`).get(function(){
     if(this.postImage != null  && this.postImageType != null){
         return `data: ${this.postImageType};charset=utf-8;base64,${this.postImage.toString(`base64`)}`
+    }else{
+        return `https://img.myloview.com/canvas-prints/carton-parcel-box-icon-isometric-of-carton-parcel-box-vector-icon-for-web-design-isolated-on-white-background-700-210532772.jpg`
     }
 })
 
