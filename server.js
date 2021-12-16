@@ -55,13 +55,6 @@ app.use(async function (req, res, next) {
   next();
 });
 
-//auth required
-const authRequired = function (req, res, next) {
-  if(req.session.currentUser){
-    return next();
-  }
-  return res.redirect("/");
-}
 
 const mongoose = require(`mongoose`);
 mongoose.connect(process.env.DATABASE_URL, { useNewUrlParser: true });
