@@ -533,6 +533,10 @@ iframe {
   background-image: url('/images/mountain.jpg');
 }
 
+.breathe-container a{
+  z-index:1;
+}
+
 .heart-screen{
   position: absolute;
   background: linear-gradient(white, rgba(90, 165, 226, 0.7), rgba(90, 165, 226, 0.4));
@@ -626,7 +630,7 @@ iframe {
 
 .progress {
   background-color: #e4c465;
-  animation: progressBar 3s ease-in-out;
+  animation: progressBar 60s ease-in-out;
   animation-fill-mode: both;
 }
 
